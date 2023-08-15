@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 11:22:10 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/13 12:00:02 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:10:21 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,13 @@ int main()
 {
 	PhoneBook	phoneBook;
 	std::string	input;
-	while (1)
+	while (std::getline(std::cin, input))
 	{
 		std::cout << "Enter a command:" << std::endl;
-		std::getline(std::cin, input);
 		if (input == "ADD")
-		{
-			Contact	newContact;
-			newContact.createNewContact();
-			// phoneBook.addNewContact(newContact);
-		}
+			phoneBook.addNewContact();
 		else
-			std::cout << "Invalid command!! HINT: (ADD, SEARCH, EXIT)";
+			std::cout << "Invalid command!! HINT: (ADD, SEARCH, EXIT)" << std::endl;
 		// 	//do somthing
 		// else if (input == "SEARCH")
 		// 	//do somthing
