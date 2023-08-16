@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:25:19 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/15 16:30:44 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:08:08 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ class Contact
 		std::string getNakeName(void);
 		std::string getDarkestSecret(void);
 		int			getPhoneNumber(void);
-		int			setFirstName(std::string _firstName);
-		int			setLastName(std::string _lastName);
-		int			setNakeName(std::string _nakeName);
-		int			setDarkestSecret(std::string _darkestSecret);
-		int			setPhoneNumber(int _phoneNumber);
-		// void	searchContact();
+		void		setFirstName(std::string _firstName);
+		void		setLastName(std::string _lastName);
+		void		setNakeName(std::string _nakeName);
+		void		setDarkestSecret(std::string _darkestSecret);
+		void		setPhoneNumber(int _phoneNumber);
 };
 
 #endif
