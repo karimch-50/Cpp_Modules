@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 
 // using namespace std;
@@ -198,25 +199,56 @@
 // 		}
 // };
 
+// int main()
+// {
+// 	// Chef chef;
+// 	// ItalianChef italianChef;
+
+// 	// chef.makeSpecialDish();
+// 	// italianChef.makeSpecialDish();
+// 	int j;
+// 	int i;
+// 	for( j = 1; j <= 5 ; j++)
+// 	{
+// 	    if ( j % 4 == 0)
+// 	    {
+// 	        stop = 1;
+// 	        continue;
+// 	    }
+
+// 	    sum += i+j;
+// 	}
+// 	std::cout << sum << std::endl;
+// 	return (0);
+// }
+
+// int main ()
+// {
+// 	int i;
+// 	std::string index;
+
+// 	// std::cout << "enter something:";
+// 	i = 0;
+// 	while (1)
+// 	{
+// 		// std::cin >> i;
+// 		if (!(std::cin >> i))
+// 		{
+// 			std::cin.clear();
+// 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+// 			std::cout << "Heere\n";
+// 			continue;
+// 		}
+// 		// if (std::to_string(i).length() > 10)
+// 		// 	std::cout << "Invalide input!!\n";
+// 		break;
+// 	}
+// 	std::cout << "value is: " << i;
+// 	return 0;
+// }
+
 int main()
 {
-	// Chef chef;
-	// ItalianChef italianChef;
-
-	// chef.makeSpecialDish();
-	// italianChef.makeSpecialDish();
-	int j;
-	int i;
-	for( j = 1; j <= 5 ; j++)
-	{
-	    if ( j % 4 == 0)
-	    {
-	        stop = 1;
-	        continue;
-	    }
-
-	    sum += i+j;
-	}
-	std::cout << sum << std::endl;
+	std::cout << "value is: " << std::numeric_limits<std::streamsize>::max();
 	return (0);
 }

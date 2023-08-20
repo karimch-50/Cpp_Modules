@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:54:45 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/15 19:50:43 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:01:35 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PhoneBook
 		PhoneBook();
 		void	addNewContact();
 		void	searchContact();
-		int		getIndex();
+		void	getAllInfos();
 };
 
 #endif
