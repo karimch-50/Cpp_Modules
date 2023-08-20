@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:25:44 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/20 17:39:05 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:13:56 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,29 @@ PhoneBook::PhoneBook()
 	index = 0;
 }
 
+bool	allDigits(std::string str)
+{
+	int	i;
+
+	i = 0;
+	if (str[0] == '+')
+		i++;
+	while (i < (int)str.size())
+	{
+		if (!std::isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 int	PhoneBook::addNewContact()
 {
 	std::string firstName;
 	std::string lastName;
 	std::string nakeName;
 	std::string darkestSecret;
-	long		phoneNumber;
+	std::string phoneNumber;
 
 	while(true)
 	{
@@ -70,7 +86,7 @@ int	PhoneBook::addNewContact()
 		std::cout << "Please enter your darkest secret:";
 		if (!std::getline(std::cin, darkestSecret))
 			return (1);
-		if (nakeName.empty())
+		if (darkestSecret.empty())
 		{
 			std::cout << "Darkest secret is empty!!\n";
 			continue;
@@ -81,23 +97,24 @@ int	PhoneBook::addNewContact()
 	while(true)
 	{
 		std::cout << "Please enter your phone number:";
-		if (!(std::cin >> phoneNumber))
+		if (!std::getline(std::cin, phoneNumber))
+			return (1);
+		if (phoneNumber.empty())
 		{
-			if (std::cin.eof())
-				return (1);
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Phone Number is empty!!\n";
+			continue;
+		}
+		if (!allDigits(phoneNumber))
+		{
 			std::cout << "Invalide Phone number!!\n";
 			continue;
 		}
-		if (std::to_string(phoneNumber).length() > 10)
+		if (phoneNumber.length() > 10)
 		{
 			std::cout << "Phone number Must have 10 digits!!\n";
 			continue;
 		}
 		contacts[index % 8].setPhoneNumber(phoneNumber);
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		break ;
 	}
 	this->index++;
@@ -106,20 +123,18 @@ int	PhoneBook::addNewContact()
 
 void	PhoneBook::getAllInfos()
 {
-	int	i;
+	std::string	_index;
+	int			i;
 
 	std::cout << "Please enter the index of a contact if you want more infos:";
-	if (!(std::cin >> i) || i > 7 || i > (index - 1))
+	if (!std::getline(std::cin, _index))
+		return ;
+	i = _index[0] - '0';
+	if (!allDigits(_index) || _index.length() > 1 || i > 7 || i > (index - 1))
 	{
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		if (std::cin.eof())
-			return ;
-		std::cout << "Invalide input\n";
+		std::cout << "Invalide input" << std::endl;
 		return ;
 	}
-	std::cin.clear();
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "First Name :" << contacts[i].getFirstName() << "\n";
 	std::cout << "Last Name :" << contacts[i].getLastName() << "\n";
 	std::cout << "Nake Name :" << contacts[i].getNakeName() << "\n";

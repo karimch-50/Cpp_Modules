@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:25:16 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/15 16:46:54 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:57:56 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ std::string	Contact::getDarkestSecret()
 	return (darkestSecret);
 }
 
-int	Contact::getPhoneNumber()
+std::string	Contact::getPhoneNumber()
 {
 	return (phoneNumber);
 }
@@ -57,7 +57,7 @@ void	Contact::setDarkestSecret(std::string _darkestSecret)
 	darkestSecret = _darkestSecret;
 }
 
-void	Contact::setPhoneNumber(int _phoneNumber)
+void	Contact::setPhoneNumber(std::string _phoneNumber)
 {
 	phoneNumber = _phoneNumber;
 }
