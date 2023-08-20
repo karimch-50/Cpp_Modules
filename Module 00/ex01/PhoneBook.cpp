@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:25:44 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/20 11:49:39 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:39:05 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,7 @@ PhoneBook::PhoneBook()
 	index = 0;
 }
 
-bool	allDigits(std::string str)
-{
-	int	i;
-
-	i = 0;
-	if (str.size() > 10)
-		return (false);
-	while (i < (int)str.size())
-	{
-		if (!std::isdigit(str[i]) && str[i] != '+')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-void	PhoneBook::addNewContact()
+int	PhoneBook::addNewContact()
 {
 	std::string firstName;
 	std::string lastName;
@@ -46,52 +30,52 @@ void	PhoneBook::addNewContact()
 	{
 		std::cout << "Please enter your first name:";
 		if (!std::getline(std::cin, firstName))
-			break ;
+			return (1);
 		if (firstName.empty())
 		{
 			std::cout << "First name is empty!!\n";
 			continue;
 		}
-		contacts[index % 3].setFirstName(firstName);
+		contacts[index % 8].setFirstName(firstName);
 		break ;
 	}
 	while(true)
 	{
 		std::cout << "Please enter your last name:";
 		if (!std::getline(std::cin, lastName))
-			break ;
+			return (1);
 		if (lastName.empty())
 		{
 			std::cout << "Last name is empty!!\n";
 			continue;
 		}
-		contacts[index % 3].setLastName(lastName);
+		contacts[index % 8].setLastName(lastName);
 		break ;
 	}
 	while(true)
 	{
 		std::cout << "Please enter your nake name:";
 		if (!std::getline(std::cin, nakeName))
-			break ;
+			return (1);
 		if (nakeName.empty())
 		{
 			std::cout << "Nake name is empty!!\n";
 			continue;
 		}
-		contacts[index % 3].setNakeName(nakeName);
+		contacts[index % 8].setNakeName(nakeName);
 		break ;
 	}
 	while(true)
 	{
 		std::cout << "Please enter your darkest secret:";
 		if (!std::getline(std::cin, darkestSecret))
-			break ;
+			return (1);
 		if (nakeName.empty())
 		{
 			std::cout << "Darkest secret is empty!!\n";
 			continue;
 		}
-		contacts[index % 3].setDarkestSecret(darkestSecret);
+		contacts[index % 8].setDarkestSecret(darkestSecret);
 		break ;
 	}
 	while(true)
@@ -99,6 +83,8 @@ void	PhoneBook::addNewContact()
 		std::cout << "Please enter your phone number:";
 		if (!(std::cin >> phoneNumber))
 		{
+			if (std::cin.eof())
+				return (1);
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Invalide Phone number!!\n";
@@ -109,12 +95,13 @@ void	PhoneBook::addNewContact()
 			std::cout << "Phone number Must have 10 digits!!\n";
 			continue;
 		}
-		contacts[index % 3].setPhoneNumber(phoneNumber);
+		contacts[index % 8].setPhoneNumber(phoneNumber);
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		break ;
 	}
 	this->index++;
+	return (0);
 }
 
 void	PhoneBook::getAllInfos()
@@ -122,12 +109,13 @@ void	PhoneBook::getAllInfos()
 	int	i;
 
 	std::cout << "Please enter the index of a contact if you want more infos:";
-	std::cin >> i;
-	if (i > 8 || i > (index - 1))
+	if (!(std::cin >> i) || i > 7 || i > (index - 1))
 	{
-		std::cout << "Invalide input\n";
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		if (std::cin.eof())
+			return ;
+		std::cout << "Invalide input\n";
 		return ;
 	}
 	std::cin.clear();
@@ -150,7 +138,7 @@ void	PhoneBook::searchContact()
 		std::cout << "|   Index  | FistName | LastName | NakeName |\n";
 		std::cout << "|----------|----------|----------|----------|\n";
 		i = 0;
-		size = (index > 3) ? 3 : index;
+		size = (index > 8) ? 8 : index;
 		while (i < size)
 		{
 			

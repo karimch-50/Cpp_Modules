@@ -247,32 +247,34 @@
 // 	return 0;
 // }
 
-// int main()
-// {
-// 	std::cout << "value is: " << std::numeric_limits<std::streamsize>::max();
-// 	return (0);
-// }
-
-#include <iostream>
-#include <ctime>
-#include <iomanip> // For std::setw and std::setfill
-
-int main() {
-    time_t currentTime;
-    time(&currentTime);
-
-    struct tm *timeInfo = localtime(&currentTime);
-
-    char formattedTime[15];
-    sprintf(formattedTime, "%04d%02d%02d_%02d%02d%02d",
-            timeInfo->tm_year + 1900,
-            timeInfo->tm_mon + 1,
-            timeInfo->tm_mday,
-            timeInfo->tm_hour,
-            timeInfo->tm_min,
-            timeInfo->tm_sec);
-
-    std::cout << "Formatted time: " << formattedTime << std::endl;
-
-    return 0;
+int main()
+{
+	int i;
+	std::cin >> i;
+	std::cout << "value is: " << std::numeric_limits<std::streamsize>::max();
+	return (0);
 }
+
+// #include <iostream>
+// #include <ctime>
+// #include <iomanip> // For std::setw and std::setfill
+
+// int main() {
+//     time_t currentTime;
+//     time(&currentTime);
+
+//     struct tm *timeInfo = localtime(&currentTime);
+
+//     char formattedTime[15];
+//     sprintf(formattedTime, "%04d%02d%02d_%02d%02d%02d",
+//             timeInfo->tm_year + 1900,
+//             timeInfo->tm_mon + 1,
+//             timeInfo->tm_mday,
+//             timeInfo->tm_hour,
+//             timeInfo->tm_min,
+//             timeInfo->tm_sec);
+
+//     std::cout << "Formatted time: " << formattedTime << std::endl;
+
+//     return 0;
+// }

@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 12:13:26 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/20 16:47:42 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:43:58 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 	_amount -= withdrawal;
 	if (!checkAmount())
 	{
-		std::cout << "withdrawal:refused" << std::endl;
+		std::cout << ";withdrawal:refused" << std::endl;
 		_amount += withdrawal;
 		return (false);
 	}

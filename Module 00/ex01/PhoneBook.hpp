@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:54:45 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/17 11:01:35 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:21:25 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 class PhoneBook
 {
 	private:
-		Contact contacts[3];
+		Contact contacts[8];
 		int		index;
 	public:
 		PhoneBook();
-		void	addNewContact();
+		int		addNewContact();
 		void	searchContact();
 		void	getAllInfos();
 };

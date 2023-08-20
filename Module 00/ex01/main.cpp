@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 11:22:10 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/15 19:35:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:11:50 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int main()
 		if (!std::getline(std::cin, input))
 			break ;
 		if (input == "ADD")
-			phoneBook.addNewContact();
+		{
+			if (phoneBook.addNewContact())
+				break ;
+		}
 		else if (input == "SEARCH")
 			phoneBook.searchContact();
 		else if (input == "EXIT")
