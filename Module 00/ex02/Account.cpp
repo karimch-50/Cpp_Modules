@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 12:13:26 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/20 17:43:58 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:56:30 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	Account::_displayTimestamp(void)
 	timeInfo = localtime(&currentTime);
 	char formattedTime[16];
     strftime(formattedTime, sizeof(formattedTime), "%Y%m%d_%H%M%S", timeInfo);
-	std::cout << formattedTime << " ";
+	std::cout << "[" << formattedTime << "] ";
 }
 
 void	Account::displayAccountsInfos()
