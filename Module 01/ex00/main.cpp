@@ -18,5 +18,6 @@ int main()
 
 	zombie1->announce();
 	randomChump("karim");
+	delete zombie1;
 	return (0);
 }
