@@ -247,13 +247,13 @@
 // 	return 0;
 // }
 
-int main()
-{
-	int i;
-	std::cin >> i;
-	std::cout << "value is: " << std::numeric_limits<std::streamsize>::max();
-	return (0);
-}
+// int main()
+// {
+// 	int i;
+// 	std::cin >> i;
+// 	std::cout << "value is: " << std::numeric_limits<std::streamsize>::max();
+// 	return (0);
+// }
 
 // #include <iostream>
 // #include <ctime>
@@ -278,3 +278,53 @@ int main()
 
 //     return 0;
 // }
+
+// int main() {
+//     int originalValue = 42;
+
+//     // Creating a reference to the originalValue
+//     int& reference = originalValue;
+
+//     // Modifying the value through the reference
+//     reference = 99;
+
+//     std::cout << "originalValue: " << originalValue << std::endl; // Outputs: originalValue: 99
+
+//     // Creating a read-only reference
+//     const int& readOnlyReference = originalValue;
+
+//     // This would result in a compilation error because readOnlyReference is read-only
+//     readOnlyReference = 123;
+
+//     std::cout << "readOnlyReference: " << readOnlyReference << std::endl; // Outputs: readOnlyReference: 99
+
+//     return 0;
+// }
+// In this example, reference is a reference to the originalValue, meaning any changes made to reference also affect originalValue. The readOnlyReference is a read-only reference, which means you cannot modify the variable through it.
+
+// References are commonly used as function parameters to allow modifying the original value or to avoid copying large objects. For instance:
+
+// cpp
+// Copy code
+
+
+void modifyValue(int& value) {
+    value = 123;
+}
+
+int main() {
+    int num = 7;
+    modifyValue(num);
+	 std::string bee = NULL;
+	 std::string *test1 = &bee;
+	//  &test1 = bee;
+    std::cout << "num after modification: " << bee << std::endl; // Outputs: num after modification: 123
+
+    return 0;
+}
+// Remember that references must be initialized when they are declared and cannot be reassigned to refer to a different variable once they are bound.
+
+
+
+
+
