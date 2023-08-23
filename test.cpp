@@ -308,23 +308,42 @@
 // Copy code
 
 
-void modifyValue(int& value) {
-    value = 123;
-}
+// void modifyValue(int& value) {
+//     value = 123;
+// }
 
-int main() {
-    int num = 7;
-    modifyValue(num);
-	 std::string bee = NULL;
-	 std::string *test1 = &bee;
-	//  &test1 = bee;
-    std::cout << "num after modification: " << bee << std::endl; // Outputs: num after modification: 123
+// int main() {
+//     int num = 7;
+//     modifyValue(num);
+// 	 std::string bee = NULL;
+// 	 std::string *test1 = &bee;
+// 	//  &test1 = bee;
+//     std::cout << "num after modification: " << bee << std::endl; // Outputs: num after modification: 123
 
-    return 0;
-}
+//     return 0;
+// }
 // Remember that references must be initialized when they are declared and cannot be reassigned to refer to a different variable once they are bound.
 
 
 
+#include <iostream>
+#include <fstream>
+using namespace std;
 
+// int main () {
+//   ofstream myfile("example.txt");
+// //   myfile.open ("example.txt");
+//   myfile << "Writing this to a file.\n";
+//   myfile.close();
+//   return 0;
+// }
 
+#include <string>
+
+int main()
+{
+    std::string test = "hello my name is khrim";
+
+    std::cout << test.find("karim");
+    return (0);
+}
