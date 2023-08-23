@@ -6,13 +6,13 @@
 #    By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 20:42:06 by kchaouki          #+#    #+#              #
-#    Updated: 2023/08/22 20:44:23 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/08/23 12:21:45 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = War
 
-SRCS = main.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
