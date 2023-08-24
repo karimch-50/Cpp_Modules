@@ -338,12 +338,35 @@ using namespace std;
 //   return 0;
 // }
 
-#include <string>
+// #include <string>
+
+// void    HelloWorld()
+// {
+//     std::cout << "Hello World" << std::endl;
+// }
+// void    HelloWorld2()
+// {
+//     std::cout << "Hello World 2" << std::endl;
+// }
+
+// int main()
+// {
+//     void(*func[2])() = {HelloWorld, HelloWorld2};
+
+//     return (0);
+// }
 
 int main()
 {
-    std::string test = "hello my name is khrim";
-
-    std::cout << test.find("karim");
-    return (0);
+    int day = 7;
+    switch (day) {
+    case 6:
+        cout << "Today is Saturday";
+        break;
+    case 7:
+        cout << "Today is Sunday";
+        break;
+    default:
+        cout << "Looking forward to the Weekend";
+    }
 }
