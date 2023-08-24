@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 14:47:44 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/24 12:48:24 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:36:45 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 			std::cout << "failed to open the file!!" << std::endl;
 			return (1);
 		}
-		std::ofstream outfile((fileName + ".replace").c_str());
+		std::ofstream outfile((fileName.substr(0, fileName.find(".")) + ".replace").c_str());
 		if (!infile)
 		{
 			std::cout << "failed to create the file!!" << std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 08:57:09 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/22 14:09:00 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:20:14 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int main()
 {
-	Zombie *zombie = zombieHorde(3, "test");
-	for (int i = 0; i < 3; i++)
+	int N = 10;
+	Zombie *zombie = zombieHorde(N, "test");
+	for (int i = 0; i < N; i++ && zombie)
 		zombie[i].announce();
-
 	delete [] zombie;
-	// std::cout << "heeer\n";
 	return (0);
 }

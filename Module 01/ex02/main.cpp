@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:21:03 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/22 20:43:56 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:21:49 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main()
 {
-	std::string variable="HI THIS IS BRAIN";
+	std::string variable = "HI THIS IS BRAIN";
 	std::string *stringPTR = &variable;
 	std::string &stringREF = variable;
 
