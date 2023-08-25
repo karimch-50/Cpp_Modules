@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:21:03 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/24 13:21:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:07:02 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main()
 
 
 	std::cout << "The memory address of the string variable: " << &variable << std::endl;
-	std::cout << "The memory address held by stringPTR: " << &stringPTR << std::endl;
+	std::cout << "The memory address held by stringPTR: " << stringPTR << std::endl;
 	std::cout << "The memory address held by stringREF: " << &stringREF << std::endl;
 
 	std::cout << "The value of the string variable: " << variable << std::endl;
