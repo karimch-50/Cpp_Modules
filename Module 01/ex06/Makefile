@@ -6,7 +6,7 @@
 #    By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 21:52:28 by kchaouki          #+#    #+#              #
-#    Updated: 2023/08/24 13:00:34 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/08/25 11:12:42 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = main.cpp Harl.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = #-Wall -Wextra -Werror 
 
 CCe = c++
 

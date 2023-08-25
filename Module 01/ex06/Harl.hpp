@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 21:52:36 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/24 12:45:35 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:10:41 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ class Harl
 	public:
 		void complain(std::string level);
 };
+
+typedef void (Harl::*t_funcPtr)(void);
 
 #endif
