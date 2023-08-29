@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 12:44:31 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/27 07:47:56 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/08/27 10:55:15 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/08/27 11:36:23 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
@@ -26,8 +27,28 @@ class Fixed
 		Fixed(const int _num);
 		Fixed(const float _num);
 		Fixed(const Fixed& _copy);
-		~Fixed();
+		~Fixed();		
 		Fixed&	operator=(const Fixed& _assignment);
+		Fixed&	operator+(const Fixed& _assignment);
+		Fixed&	operator-(const Fixed& _assignment);
+		Fixed&	operator*(const Fixed& _assignment);
+		Fixed&	operator/(const Fixed& _assignment);
+		bool	operator>(const Fixed& _assignment);
+		bool	operator>=(const Fixed& _assignment);
+		bool	operator<(const Fixed& _assignment);
+		bool	operator<=(const Fixed& _assignment);
+		bool	operator==(const Fixed& _assignment);
+		bool	operator!=(const Fixed& _assignment);
+
+		//pre decriment 2
+		//post incriment 2
+		Fixed&	operator++();
+		Fixed	operator++(int);
+
+		static int& min(int& nbr1, int& nbr2);
+		static int& min(const int& nbr1, const int& nbr2);
+		static int& max(int& nbr1, int &nbr2);
+		static int& max(const int& nbr1, const int &nbr2);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;

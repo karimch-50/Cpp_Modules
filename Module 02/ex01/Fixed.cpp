@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 12:44:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/26 18:31:25 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/27 07:54:13 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Fixed::Fixed(const int _num)
 Fixed::Fixed(const float _num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	number = _num * 256;
+	number = _num * (1 << f_bits);
 }
 
 Fixed::~Fixed()
@@ -64,7 +64,7 @@ int	Fixed::getRawBits(void) const
 
 float		Fixed::toFloat(void) const
 {
-	return ((float) number / 256);
+	return ((float)number / (1 << f_bits));
 }
 
 int		Fixed::toInt(void) const
