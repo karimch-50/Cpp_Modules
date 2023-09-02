@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/31 16:23:03 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/02 10:03:47 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/08/31 16:23:47 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/09/01 19:33:19 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef POINT_HPP
+#define POINT_HPP
 
-int main()
+#include "Fixed.hpp"
+
+class Point
 {
-	Point a(1.2, 1);
-	Point b(3, 4);
-	Point c(4.7f, 1);
-	Point x(2, 1.5f);
+	private:
+		Fixed x;
+		Fixed y;
+	public:
+		Point();
+		Point(const float& _x, const float& _y);
+		Point(const Point& _copy);
+		~Point();
+		Point&	operator=(const Point& _point);
+		Fixed	getX() const;
+		Fixed	getY() const;
+};
 
-	bool result = bsp(a, b, c, x);
-	if (result)
-		std::cout << "the point x [BELONG] to the traingle abc" << std::endl;
-	else
-		std::cout << "the point x [DOESN'T BELONG] to the traingle abc" << std::endl;
-	return (0);
-}
+bool bsp(Point const a, Point const b, Point const c, Point const point);
+
+#endif

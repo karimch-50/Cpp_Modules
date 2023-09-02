@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:31:08 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/08/26 12:31:12 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:07:07 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Fixed
 {
 	private:
-		int number;
+		int fp_number;
 		static const int 	f_bits;
 	public:
 		Fixed();
@@ -26,7 +26,7 @@ class Fixed
 		Fixed(const Fixed& _copy);
 		Fixed&	operator=(const Fixed& _assignment);
 		int		getRawBits(void) const;
-		void		setRawBits(int const raw);
+		void	setRawBits(int const raw);
 };
 
 #endif

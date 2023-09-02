@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 10:55:08 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/02 09:07:18 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/08/31 16:23:38 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/08/31 18:03:34 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ Fixed::Fixed(const float _num)
 Fixed::~Fixed()
 {
 
+}
+
+Fixed::Fixed(const Fixed& _copy)
+{
+	*this = _copy;
 }
 
 /*------------------operator overloading-----------------------*/
@@ -140,11 +145,6 @@ const Fixed&	Fixed::max(const Fixed& nbr1, const Fixed &nbr2)
 	return (nbr1.fp_number > nbr2.fp_number ? nbr1 : nbr2);
 }
 
-Fixed::Fixed(const Fixed& _copy)
-{
-	*this = _copy;
-}
-
 void		Fixed::setRawBits(int const raw)
 {
 	fp_number = raw;
@@ -167,6 +167,6 @@ int		Fixed::toInt(void) const
 
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed)
 {
-	stream << std::setprecision(10) << fixed.toFloat();
+	stream << fixed.toFloat();
 	return (stream);
 }

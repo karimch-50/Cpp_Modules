@@ -6,7 +6,7 @@
 #    By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 10:55:24 by kchaouki          #+#    #+#              #
-#    Updated: 2023/08/27 10:55:26 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/08/31 15:29:44 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CCe = c++
 
 all: $(NAME)
 
-%.o : %.cpp
+%.o : %.cpp Fixed.hpp
 	$(CCe) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)

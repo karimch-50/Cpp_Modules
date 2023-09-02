@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+         #
+#    By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/25 11:31:12 by kchaouki          #+#    #+#              #
-#    Updated: 2023/08/26 12:33:07 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/08/31 15:34:33 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CCe = c++
 
 all: $(NAME)
 
-%.o : %.cpp
+%.o : %.cpp Fixed.hpp
 	$(CCe) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
