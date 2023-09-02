@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 10:55:08 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/02 09:07:18 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/02 10:18:37 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,6 @@ int		Fixed::toInt(void) const
 
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed)
 {
-	stream << std::setprecision(10) << fixed.toFloat();
+	stream << fixed.toFloat();
 	return (stream);
 }
