@@ -6,18 +6,19 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:41:55 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 13:03:37 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:29:19 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-	ScavTrap scavTrap("karim");
+	DiamondTrap t1("Karim");
 
-	scavTrap.attack("chiwa7d");
-	scavTrap.takeDamage(12);
-	scavTrap.guardGate();
+	
+	t1.attack("test");
+	t1.whoAmI();
+	t1.highFivesGuys();
 	return (0);
 }

@@ -6,17 +6,17 @@
 #    By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/02 10:41:51 by kchaouki          #+#    #+#              #
-#    Updated: 2023/09/06 17:35:25 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/09/07 08:01:09 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = a.out
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 CCe = c++
 

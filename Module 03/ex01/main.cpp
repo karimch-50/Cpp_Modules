@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:41:55 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 19:05:15 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:22:13 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 int main()
 {
-	// ClapTrap *a = new ScavTrap;
+	ScavTrap scavTrap;	
+	scavTrap.attack("haha");
 
-	// a->attack("test");
-	// scavTrap.attack("chiwa7d");
-	// scavTrap.takeDamage(12);
-	// scavTrap.guardGate();
-	ScavTrap sc;
-	ScavTrap sc2(sc);
+	scavTrap.takeDamage(12);
+	scavTrap.guardGate();	
 	return (0);
 }

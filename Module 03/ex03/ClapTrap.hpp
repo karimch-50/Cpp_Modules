@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:41:57 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 17:34:20 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:19:55 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class ClapTrap
 		int			AttackDamage;
 	public:
 		ClapTrap();
-		~ClapTrap();
-		ClapTrap(std::string _name);
+		virtual ~ClapTrap();
+		ClapTrap(const std::string _name);
 		ClapTrap(const ClapTrap& _copy);
 		ClapTrap& operator=(const ClapTrap& _assignment);
 		virtual void attack(const std::string& target);

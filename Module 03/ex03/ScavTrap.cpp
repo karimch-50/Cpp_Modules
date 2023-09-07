@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 12:20:01 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 19:09:19 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:20:18 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ScavTrap::~ScavTrap()
 	std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string _name):ClapTrap(_name)
+ScavTrap::ScavTrap(const std::string _name):ClapTrap(_name)
 {
 	std::cout << "ScavTrap Constructor with param called" << std::endl;
 	HitPoint = 100;
@@ -67,4 +67,19 @@ void ScavTrap::attack(const std::string& target)
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << Name << " is now in Gate keeper mode" << std::endl;
+}
+
+int	ScavTrap::getHP()
+{
+	return (HitPoint);
+}
+
+int ScavTrap::getEP()
+{
+	return (EnergyPoints);
+}
+
+int ScavTrap::getAD()
+{
+	return (AttackDamage);
 }

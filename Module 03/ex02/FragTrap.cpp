@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:37:07 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 19:09:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:26:28 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ FragTrap::~FragTrap()
 	std::cout << "FragTrap Destructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string _name):ClapTrap(_name)
+FragTrap::FragTrap(const std::string _name):ClapTrap(_name)
 {
 	std::cout << "FragTrap Constructor with param called" << std::endl;
 	HitPoint = 100;
@@ -55,5 +55,5 @@ FragTrap& FragTrap::operator=(const FragTrap& _assignment)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << "🖐🏻" << std::endl;
+	std::cout << "🤚" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:41:57 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 18:49:47 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:18:10 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ClapTrap
 	public:
 		ClapTrap();
 		~ClapTrap();
-		ClapTrap(std::string _name);
+		ClapTrap(const std::string _name);
 		ClapTrap(const ClapTrap& _copy);
 		ClapTrap& operator=(const ClapTrap& _assignment);
 		void attack(const std::string& target);

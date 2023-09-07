@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 10:41:59 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/06 19:11:00 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:19:51 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ClapTrap::~ClapTrap()
 	std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string _name): HitPoint(10), EnergyPoints(10), AttackDamage(0)
+ClapTrap::ClapTrap(const std::string _name): HitPoint(10), EnergyPoints(10), AttackDamage(0)
 {
 	std::cout << "ClapTrap Constructor with param called" << std::endl;
 	Name = _name;
