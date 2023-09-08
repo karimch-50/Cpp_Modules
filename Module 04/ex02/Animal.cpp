@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:32:50 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/07 14:32:54 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/07 20:57:16 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ Animal& Animal::operator=(const Animal& _assignment)
 	if (this != &_assignment)
 		type = _assignment.type;
 	return (*this);
-}
-
-void	Animal::makeSound(void) const
-{
-	std::cout << "Animal: animal make sound" << std::endl;
 }
 
 const std::string&	Animal::getType(void) const
