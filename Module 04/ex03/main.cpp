@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 06:50:34 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/10 13:52:10 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:19:37 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 void	test1()
 {
 	IMateriaSource* src = new MateriaSource();
+	Ice* ice = new Ice();
+	src->learnMateria(ice);
+	src->learnMateria(ice);
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	
@@ -28,13 +31,14 @@ void	test1()
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
 
 	delete bob;
 	delete me;
-	delete src;	
+	delete src;
 }
 
 void	test2()
@@ -100,7 +104,7 @@ void	test5()
 
 void	test6()
 {
-	AMateria *a = new Ice;
+	Ice *a = new Ice;
 	Character *c = new Character;
 
 	c->equip(a);
@@ -202,14 +206,34 @@ void	test10()
 	b.use(3, b);
 }
 
+void	test11()
+{
+	AMateria *a = new Ice;
+	Character *c = new Character;
+
+	c->equip(a);
+	c->equip(a);
+	c->equip(a);
+	c->equip(a);
+	c->unequip(0);
+	c->unequip(1);
+	c->unequip(2);
+	c->unequip(3);
+	c->unequip(4);
+	c->equip(a);
+	delete c;
+}
+
 int main()
 {
 	std::cout << "--------- test 1 ----------" << std::endl;
 	test1();
 	std::cout << "--------- test 2 ----------" << std::endl;
 	test2();
+	
 	std::cout << "--------- test 3 ----------" << std::endl;
 	test3();
+
 	std::cout << "--------- test 4 ----------" << std::endl;
 	test4();
 	std::cout << "--------- test 5 ----------" << std::endl;
@@ -224,6 +248,8 @@ int main()
 	test9();
 	std::cout << "--------- test 10 ----------" << std::endl;
 	test10();
+	std::cout << "--------- test 11 ----------" << std::endl;
+	test11();
 	std::cout << "--------- test LEAKS ----------" << std::endl;
 	system("leaks -q a.out");
 	return 0;

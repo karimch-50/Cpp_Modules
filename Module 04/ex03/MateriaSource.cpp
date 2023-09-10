@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 12:24:49 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/10 12:23:02 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/10 17:03:48 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ MateriaSource::MateriaSource()
 	std::cout << "MateriaSource Default constructor called" << std::endl;
 	int i = -1;
 	while (++i < 4)
-	{
 		inventory[i] = NULL;
-		trachInventory[i] = NULL;
-	}
 }
 
 MateriaSource::~MateriaSource()
@@ -28,11 +25,7 @@ MateriaSource::~MateriaSource()
 	std::cout << "MateriaSource Destructor called" << std::endl;
 	int i = 0;
 	while (i < 4)
-	{
-		delete inventory[i];
-		delete trachInventory[i];		
-		i++;
-	}
+		delete inventory[i++];
 }
 
 MateriaSource::MateriaSource(const MateriaSource& _copy)
@@ -40,11 +33,28 @@ MateriaSource::MateriaSource(const MateriaSource& _copy)
 	std::cout << "MateriaSource Copy constructor called" << std::endl;
 	int i = -1;
 	while (++i < 4)
-	{
 		inventory[i] = NULL;
-		trachInventory[i] = NULL;
-	}
 	*this = _copy;
+}
+
+const MateriaSource& MateriaSource::operator=(const MateriaSource& _assignment)
+{
+	int	i = -1;
+
+	std::cout << "MateriaSource Copy assignment operator called" << std::endl;
+	if (this != &_assignment)
+	{
+		while (++i < 4)
+		{
+			if (inventory[i] != NULL)
+				delete inventory[i];
+			if (_assignment.inventory[i])
+				inventory[i] = _assignment.inventory[i]->clone();
+			else
+				inventory[i] = NULL;
+		}	
+	}
+	return (*this);
 }
 
 static bool checkInventory(AMateria** inventory, AMateria* m)
@@ -58,46 +68,9 @@ static bool checkInventory(AMateria** inventory, AMateria* m)
 	return (true);
 }
 
-static void	freeTrachInventory(AMateria** trachInventory, AMateria** Inventory)
-{
-	int i = -1;
-
-	while (++i < 4)
-	{
-		if (!checkInventory(Inventory, trachInventory[i]))
-			delete trachInventory[i];
-		trachInventory[i] = NULL;
-	}	
-}
-
-
-const MateriaSource& MateriaSource::operator=(const MateriaSource& _assignment)
-{
-	int	i = -1;
-
-	std::cout << "MateriaSource Copy assignment operator called" << std::endl;
-	if (this != &_assignment)
-	{
-		while (++i < 4)
-		{
-			if (inventory[i] != NULL)
-				delete inventory[i];
-			if (trachInventory[i] != NULL)
-				delete trachInventory[i];
-			if (_assignment.inventory[i])
-				inventory[i] = _assignment.inventory[i]->clone();
-			else
-				inventory[i] = NULL;
-			trachInventory[i] = NULL;
-		}	
-	}
-	return (*this);
-}
-
 void MateriaSource::learnMateria(AMateria* m)
 {
 	int i = 0;
-	freeTrachInventory(trachInventory, inventory);
 	if (m != NULL)
 	{
 		while (i < 4 && inventory[i] != NULL){i++;}

@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 12:17:31 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/10 13:49:35 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:19:51 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,55 +23,16 @@ Character::Character() : name("Default")
 	}
 }
 
-// bool	hasAlredyInNewInventory(AMateria** inventory, AMateria* m)
-// {
-// 	int	i = -1;
-
-// 	while (++i < 4)
-// 	{
-// 		if (inventory[i] == m)
-// 			return (true);
-// 	}
-// 	return (false);
-// }
-
-// AMateria**	prepareDeleteInventory(AMateria** inventory)
-// {
-// 	AMateria** newInventory = new AMateria*[4];
-// 	int i = -1;
-
-// 	while (++i < 4)
-// 		newInventory[i] = NULL;
-// 	i = -1;
-// 	int j;
-// 	while (++i < 4)
-// 	{
-// 		if (!hasAlredyInNewInventory(newInventory, inventory[i]))
-// 		{
-// 			j = 0;
-// 			while (j < 4 && newInventory[j] != NULL)
-// 				j++;
-// 			newInventory[j] = inventory[i];
-// 		}
-// 	}
-// 	return (newInventory);
-// }
-
-// Character::~Character()
-// {
-// 	std::cout << "Character Destructor called" << std::endl;
-// 	int i = 0;
-// 	AMateria**	toDelete1 = prepareDeleteInventory(inventory);
-// 	AMateria**	toDelete2 = prepareDeleteInventory(trachInventory);
-// 	while (i < 4)
-// 	{
-// 		delete toDelete1[i];
-// 		delete toDelete2[i];		
-// 		i++;
-// 	}
-// 	delete [] toDelete1;
-// 	delete [] toDelete2;
-// }
+static bool checkInventory(AMateria** inventory, AMateria* m)
+{
+	int i = -1;
+	while (++i < 4)
+	{
+		if (inventory[i] && inventory[i] == m)
+			return (false);
+	}
+	return (true);
+}
 
 Character::~Character()
 {
@@ -79,8 +40,13 @@ Character::~Character()
 	int i = 0;
 	while (i < 4)
 	{
-		delete inventory[i];
-		delete trachInventory[i];		
+		if (checkInventory(trachInventory, inventory[i]) == false)
+			delete inventory[i];
+		else
+		{
+			delete inventory[i];
+			delete trachInventory[i];		
+		}
 		i++;
 	}
 }
@@ -108,26 +74,17 @@ Character::Character(const Character& _copy)
 	*this = _copy;
 }
 
-static bool checkInventory(AMateria** inventory, AMateria* m)
-{
-	int i = -1;
-	while (++i < 4)
-	{
-		if (inventory[i] == m)
-			return (false);
-	}
-	return (true);
-}
-
 static void	freeTrachInventory(AMateria** trachInventory, AMateria** Inventory)
 {
 	int i = -1;
 
 	while (++i < 4)
 	{
-		if (!checkInventory(Inventory, trachInventory[i]))
+		if (checkInventory(Inventory, trachInventory[i]) == true)
+		{
 			delete trachInventory[i];
-		trachInventory[i] = NULL;
+			trachInventory[i] = NULL;
+		}
 	}	
 }
 
@@ -145,6 +102,7 @@ const Character& Character::operator=(const Character& _assignment)
 				delete inventory[i];
 			if (trachInventory[i] != NULL)
 				delete trachInventory[i];
+			
 			if (_assignment.inventory[i])
 				inventory[i] = _assignment.inventory[i]->clone();
 			else
@@ -162,7 +120,6 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	freeTrachInventory(trachInventory, inventory);
 	int i = 0;
 	if (m != NULL)
 	{
@@ -184,6 +141,7 @@ void Character::equip(AMateria* m)
 			}
 		}
 	}
+	freeTrachInventory(trachInventory, inventory);
 }
 
 void Character::unequip(int idx)
