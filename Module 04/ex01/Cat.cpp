@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:32:54 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/07 19:53:44 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/09 19:10:32 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 Cat::Cat() : Animal("Cat")
 {
+	std::cout << "Cat Default constructor called" << std::endl;
 	brain = new Brain();
 	for (int i = 0; i < 100; i++)
 		brain->Ideas[i] = "Cat idea";
-	std::cout << "Cat Default constructor called" << std::endl;
 }
 
 Cat::~Cat()
 {
-	delete brain;
 	std::cout << "Cat Destructor called" << std::endl;
+	delete brain;
 }
 
 Cat::Cat(const Cat& _copy) : Animal(_copy)

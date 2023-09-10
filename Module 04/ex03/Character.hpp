@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:55:59 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/08 19:47:36 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/09 20:38:19 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
 class Character : public ICharacter
 {
 	private:
 		std::string name;
-		// int			index;
 		AMateria*	inventory[4];
+		AMateria*	trachInventory[4];
 	public:
 		Character();
 		~Character();

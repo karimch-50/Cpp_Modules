@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 08:20:53 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/08 17:20:10 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:17:42 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@
 
 class MateriaSource : public IMateriaSource
 {
-	// private:
-	// 	int	_index;
-	// 	AMateria* inventory[4];
+	private:
+		AMateria* inventory[4];
+		AMateria* trachInventory[4];
 	public:
 		MateriaSource();
 		~MateriaSource();
-		// MateriaSource(const std::string name);
 		MateriaSource(const MateriaSource& _copy);
 		const MateriaSource& operator=(const MateriaSource& _assignment);
-		void learnMateria(AMateria*);
+		void learnMateria(AMateria* m);
 		AMateria* createMateria(std::string const & type);
 };
 
