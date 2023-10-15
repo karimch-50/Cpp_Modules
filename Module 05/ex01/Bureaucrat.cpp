@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 11:53:10 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/14 15:01:40 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/13 19:54:02 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/14 13:07:48 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat::Bureaucrat(const std::string& _name, int _grade) : name(_name)
 {
-		std::cout << "Bureaucrat Constructor with param called" << std::endl;
+	std::cout << "Bureaucrat Constructor with param called" << std::endl;
 	if (_grade < 1)
 		throw GradeTooHighException();
 	if (_grade > 150)
@@ -50,7 +50,6 @@ const std::string	Bureaucrat::getName(void) const
 {
 	return (name);
 }
-
 
 int	Bureaucrat::getGrade() const
 {
@@ -85,4 +84,17 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Bureaucrat::exception=> Grade is very low!!");		
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception& ex)
+	{
+		std::cout << name << " couldn’t sign " << form.getName() << " because " << ex.what() << std::endl;
+	}
 }

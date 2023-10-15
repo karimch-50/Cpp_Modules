@@ -5,29 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 11:53:12 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/15 13:14:39 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/14 13:37:58 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/15 11:30:03 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat b("test", 150);
-		Bureaucrat b2("test2", 1);
-		std::cout << b << std::endl;
-		std::cout << b2 << std::endl;
-		b.DownGrade();
-		b2.upGrade();
-		std::cout << b << std::endl;
-		std::cout << b2 << std::endl;
+		Bureaucrat b = Bureaucrat("bureaucrat_1", 2);
+		// PresidentialPardonForm p = PresidentialPardonForm("test");
+		// p.beSigned(b);
+		// p.execute(b);
+
+		// RobotomyRequestForm r = RobotomyRequestForm("test2");
+		// r.beSigned(b);
+		// r.execute(b);
+
+		ShrubberyCreationForm s = ShrubberyCreationForm("test2");
+		s.beSigned(b);
+		s.execute(b);
 	}
-	catch (std::exception& e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
-	return (0);
+	
+	return (1);
 }

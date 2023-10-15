@@ -5,29 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 11:53:12 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/15 13:14:39 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/13 19:54:13 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/14 13:40:14 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat b("test", 150);
-		Bureaucrat b2("test2", 1);
-		std::cout << b << std::endl;
-		std::cout << b2 << std::endl;
-		b.DownGrade();
-		b2.upGrade();
-		std::cout << b << std::endl;
-		std::cout << b2 << std::endl;
+		Form f1("test1", 1, 1);
+		Bureaucrat	b("test", 12);
+		b.signForm(f1);
+		// f1.beSigned(b);
 	}
-	catch (std::exception& e)
+	catch (std::exception &ex)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << ex.what() << std::endl;
 	}
 	return (0);
 }
