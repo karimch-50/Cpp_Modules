@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 10:11:15 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/15 15:43:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:09:14 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ AForm*	Intern::makeForm(const std::string name, const std::string target)
 	int i = 0;
 	while (i < 3 && name != names[i])
 		i++;
-    if(i < 4)
+    if(i < 3)
 	{
 		std::cout << "Intern creates " << target << std::endl;
 		return (this->*funcs[i])(target);

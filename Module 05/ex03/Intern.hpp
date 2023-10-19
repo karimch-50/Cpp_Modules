@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 08:39:45 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/15 15:36:23 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:09:25 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ class Intern
 		AForm*	createPresidentialPardon(std::string target);
 		AForm*	makeForm(const std::string name, const std::string target);	
 };
-
-typedef AForm(Intern::*t_funcPtr)(void);
 
 #endif
