@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 07:53:44 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/18 08:24:40 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:52:53 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ struct Data
 
 class Serializer
 {
+	Serializer();
 	public:
-		Serializer();
 		~Serializer();
 		Serializer(const Serializer& _copy);
 		Serializer& operator=(const Serializer& _assignment);

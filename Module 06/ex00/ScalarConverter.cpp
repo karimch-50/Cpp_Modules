@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:07:59 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/18 21:40:47 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:52:40 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void ScalarConverter::convert(std::string str)
 {
 	double ret;
 	char *endptr;
-	size_t actualSize;
+	size_t beforDot;
 	size_t maxSize = -1;
 
 	ret = strtod(str.c_str(), &endptr);
@@ -108,8 +108,8 @@ void ScalarConverter::convert(std::string str)
 	if (*endptr == '\0' || (*endptr == 'f' && *(endptr + 1) == '\0') || (str.length() == 1 && *endptr != '\0'))
 	{
 		std::cout << std::fixed;
-		actualSize = str.find(".", 0);
-		std::cout << std::setprecision((actualSize < maxSize && actualSize <= str.length()) ? (str.length() - actualSize - 1) : 1); 
+		beforDot = str.find(".", 0);
+		std::cout << std::setprecision((beforDot != maxSize) ? (*endptr == 'f' ? str.length() - beforDot - 2 : str.length() - beforDot - 1) : 1); 
 		ConvetToCharPrinter(ret);
 		ConvetToIntPrinter(ret);
 		ConvetToFloatPrinter(ret);

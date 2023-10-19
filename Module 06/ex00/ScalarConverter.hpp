@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 08:04:00 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/17 20:03:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:52:49 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 class ScalarConverter
 {
+	ScalarConverter();	
 	public:
-		ScalarConverter();	
 		~ScalarConverter();
 		ScalarConverter(const ScalarConverter& _copy);
 		ScalarConverter& operator=(const ScalarConverter& _assignment);
