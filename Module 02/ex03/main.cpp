@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:23:03 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/02 10:03:47 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/16 13:31:52 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int main()
 {
-	Point a(1.2, 1);
-	Point b(3, 4);
-	Point c(4.7f, 1);
-	Point x(2, 1.5f);
+	Point a(0, 0);
+	Point b(4, 4);
+	Point c(0, 8);
+	Point x(0, 4);
 
 	bool result = bsp(a, b, c, x);
 	if (result)

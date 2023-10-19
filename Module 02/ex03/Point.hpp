@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:23:47 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/09/01 19:33:19 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:10:51 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class Point
 {
 	private:
-		Fixed x;
-		Fixed y;
+		const Fixed x;
+		const Fixed y;
 	public:
 		Point();
 		Point(const float& _x, const float& _y);
