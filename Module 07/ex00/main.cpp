@@ -6,22 +6,11 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:36:31 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/19 20:52:11 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:33:41 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "whatever.hpp"
-
-class A
-{
-	public :
-	A(){}
-	A(const A& copy)
-	{
-		(void)copy;
-		std::cout << "hello\n";
-	}
-};
 
 int main( void ) {
 	int a = 2;
