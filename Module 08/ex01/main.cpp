@@ -5,34 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 11:58:55 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/23 13:52:39 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/23 16:57:28 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/23 16:59:54 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
-#include <vector>
-#include <deque> 
-#include <list>
+#include "Span.hpp"
 
 int main()
 {
-	try
-	{
-		std::vector<int> array;
-		// std::deque<int> array;
-		// std::list<int> array;
-		int size = 10;
-		int to_find = 6;
-		std::srand(time(NULL));
-		for (int i = 0;i < size;i++)
-			array.push_back((rand() % 10));
-		easyfind(array, to_find);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
-	return (0);
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	return 0;
 }

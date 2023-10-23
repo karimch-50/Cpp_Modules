@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/22 11:57:40 by kchaouki          #+#    #+#              #
-#    Updated: 2023/10/23 13:48:40 by kchaouki         ###   ########.fr        #
+#    Created: 2023/10/23 16:57:30 by kchaouki          #+#    #+#              #
+#    Updated: 2023/10/23 18:42:16 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = a.out
 
-SRCS = main.cpp
+SRCS = main.cpp Span.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

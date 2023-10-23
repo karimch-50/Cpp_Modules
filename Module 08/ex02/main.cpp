@@ -5,34 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 11:58:55 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/23 13:52:39 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/23 16:58:33 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/23 16:59:14 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
-#include <vector>
-#include <deque> 
-#include <list>
+#include "MutantStack.hpp"
 
 int main()
 {
-	try
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
 	{
-		std::vector<int> array;
-		// std::deque<int> array;
-		// std::list<int> array;
-		int size = 10;
-		int to_find = 6;
-		std::srand(time(NULL));
-		for (int i = 0;i < size;i++)
-			array.push_back((rand() % 10));
-		easyfind(array, to_find);
+	std::cout << *it << std::endl;
+	++it;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
-	return (0);
+	std::stack<int> s(mstack);
+	return 0;
 }

@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 11:58:53 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/22 18:01:35 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:46:09 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
+
+#include <iostream>
+#include <cstdlib>
+#include <bits/stdc++.h>
+
 template<typename T>
-void easyfind(T arg1, int arg2)
+void easyfind(T& dataHolder, int to_find)
 {
-	if ()
-		
+	typename T::iterator it;
+	it = std::find(dataHolder.begin(), dataHolder.end(), to_find);
+	if (it != dataHolder.end())
+		std::cout << "element " << to_find << " found at " << std::distance(dataHolder.begin(), it ) << std::endl;
+	else
+		throw std::invalid_argument("element not found!!");
 }
+
+#endif
