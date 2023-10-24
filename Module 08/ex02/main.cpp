@@ -6,11 +6,13 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:58:33 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/24 13:04:19 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:51:10 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
+
+#include <vector>
 
 int main()
 {
