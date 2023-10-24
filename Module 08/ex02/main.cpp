@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:58:33 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/24 13:51:10 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:46:27 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 #include <vector>
 
-int main()
+void	test1()
 {
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
+	std::cout << "Top: " << mstack.top() << std::endl;
 	mstack.pop();
-	std::cout << mstack.size() << std::endl;
+	std::cout << "Size: " << mstack.size() << std::endl;
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
@@ -33,9 +33,43 @@ int main()
 	--it;
 	while (it != ite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cout << *it << std::endl;
+		++it;
 	}
 	std::stack<int> s(mstack);
+}
+
+#include <list>
+
+void	test2()
+{
+	std::list<int> mstack;
+	mstack.push_back(5);;
+	mstack.push_back(17);
+	// std::cout << "Top: " << mstack.top() << std::endl;
+	mstack.pop_back();
+	std::cout << "Size: " << mstack.size() << std::endl;
+	mstack.push_back(3);
+	mstack.push_back(5);
+	mstack.push_back(737);
+	// //[...]
+	mstack.push_back(0);
+	std::list<int>::iterator it = mstack.begin();
+	std::list<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+}
+
+int main()
+{
+	std::cout << "------------MutantStack test---------" << std::endl;
+	test1();
+	std::cout << "------------list test---------" << std::endl;
+	test2();
 	return 0;
 }

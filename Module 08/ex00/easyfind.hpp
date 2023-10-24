@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 11:58:53 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/23 13:46:09 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:34:30 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <bits/stdc++.h>
 
 template<typename T>
 void easyfind(T& dataHolder, int to_find)
