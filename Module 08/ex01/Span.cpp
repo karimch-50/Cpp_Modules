@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:57:32 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/23 18:39:26 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:18:32 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ unsigned int Span::shortestSpan()
 	typedef std::vector<int>::iterator VecIter;
 	unsigned int shortestValue = std::numeric_limits<int>::max();;
 	for (VecIter it = dataHolder.begin(); it != dataHolder.end(); it++)
-		if ((it + 1) != dataHolder.end() && (shortestValue > abs(*(it + 1) - *it)))
-			shortestValue = abs(*(it + 1) - *it);
+		if ((it + 1) != dataHolder.end() && (shortestValue > static_cast<unsigned int>(abs(*(it + 1) - *it))))
+			shortestValue = static_cast<unsigned int>(abs(*(it + 1) - *it));
 	return (shortestValue);
 }
 
@@ -77,5 +77,24 @@ unsigned int Span::longestSpan()
 	if (dataHolder.size() < 2)
 		throw "list must have at least two or more elements";
 	return (abs(*std::max_element(dataHolder.begin(), dataHolder.end()) - \
-					*std::min_element(dataHolder.begin(), dataHolder.end())));
+				*std::min_element(dataHolder.begin(), dataHolder.end())));
 }
+
+void	Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	while (begin != end)
+	{
+		if (nbr_elements < size)
+		{
+			dataHolder.push_back(*begin);
+			nbr_elements++;
+		}
+		else
+		{
+			std::cout << "can't add more values\n\t[Span is Full!!]" << std::endl;
+			break ;
+		}
+		begin++;
+	}
+}
+

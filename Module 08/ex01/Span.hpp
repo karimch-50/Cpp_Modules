@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:57:36 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/23 18:46:55 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:11:38 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ class Span
 		void addNumber(int _N);
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
-		template<typename T> void	addNumbers(typename T::iterator& begin, typename T::iterator& end)
-		{
-			
-		}
+		void	addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };
 
 
