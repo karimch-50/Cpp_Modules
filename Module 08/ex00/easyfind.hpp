@@ -14,7 +14,7 @@
 #define EASYFIND_HPP
 
 #include <iostream>
-#include <cstdlib>
+#include <algorithm>
 
 template<typename T>
 void easyfind(T& dataHolder, int to_find)

@@ -12,8 +12,8 @@
 
 #include "easyfind.hpp"
 #include <vector>
-#include <deque> 
-#include <list>
+// #include <deque> 
+// #include <list>
 
 int main()
 {

@@ -62,7 +62,7 @@ void Span::addNumber(int _N)
 unsigned int Span::shortestSpan()
 {
 	if (dataHolder.size() < 2)
-		throw "list must have at least two or more elements";
+		throw std::invalid_argument("list must have at least two or more elements");
 	std::sort(dataHolder.begin(), dataHolder.end());
 	typedef std::vector<int>::iterator VecIter;
 	unsigned int shortestValue = std::numeric_limits<int>::max();;
@@ -75,7 +75,7 @@ unsigned int Span::shortestSpan()
 unsigned int Span::longestSpan()
 {
 	if (dataHolder.size() < 2)
-		throw "list must have at least two or more elements";
+		throw std::invalid_argument("list must have at least two or more elements");
 	return (abs(*std::max_element(dataHolder.begin(), dataHolder.end()) - \
 				*std::min_element(dataHolder.begin(), dataHolder.end())));
 }
