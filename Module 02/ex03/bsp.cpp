@@ -30,7 +30,7 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	pbcAria = (point.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - point.getY()) + c.getX() * (point.getY() - b.getY())) / 2;
 	apcAria = (a.getX() * (point.getY() - c.getY()) + point.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - point.getY())) / 2;
 	abpAria = (a.getX() * (b.getY() - point.getY()) + b.getX() * (point.getY() - a.getY()) + point.getX() * (a.getY() - b.getY())) / 2;
-	if (fpAbs(abcAria) == fpAbs(pbcAria) + fpAbs(apcAria) + fpAbs(abpAria))
+	if (fpAbs(abcAria) == fpAbs(pbcAria) + fpAbs(apcAria) + fpAbs(abpAria) && pbcAria != 0 && apcAria != 0 && abpAria != 0)
 		return (true);
 	else
 		return (false);
