@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:48:07 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/26 12:07:27 by kchaouki         ###   ########.fr       */
+/*   Created: 2023/10/26 16:06:33 by kchaouki          #+#    #+#             */
+/*   Updated: 2023/10/26 18:24:58 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#ifndef PMERGEMR_HPP
+#define PMERGEMR_HPP
 
-int main(int ac, char **av)
-{
-	if (ac == 2)
-		return (bitcoinExchange(av[1]));
-	else
-		std::cout << "Usage: \n\t./btc <infile>" << std::endl;
-	return (0);
-}
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+
+
+
+#endif
