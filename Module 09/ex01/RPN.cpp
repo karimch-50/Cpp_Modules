@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:40:43 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/26 16:04:23 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/27 09:41:55 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ static bool	claculateExp(std::stack<int>& stack, char op)
 		else if (op == '*')
 			stack.push(nbr2 * nbr1);
 		else if (op == '/')
+		{
+			if (nbr1 == 0)
+				return (std::cout << "Error" << std::endl, 1);
 			stack.push(nbr2 / nbr1);
+		}
 	}
 	else
 		return (std::cout << "Error" << std::endl, true);
