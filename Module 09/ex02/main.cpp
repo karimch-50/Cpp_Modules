@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/27 18:07:36 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/28 18:35:51 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,28 @@ std::vector<unsigned int>	parseArguments(int ac, char **args)
 		numbers.push_back(nbr);
 		i++;
 	}
-	// std::cout << "PmergeMe: " << args[1] << std::endl;
 	return (numbers);
 }
 
-typedef std::pair<std::vector<unsigned int>, std::vector<unsigned int> > pairVec;
-typedef std::vector<pairVec > VectorPair;
+typedef std::pair<std::vector<unsigned int>, std::vector<unsigned int> > PairVec;
+typedef std::vector<PairVec > VectorOfPairs;
+typedef std::vector<std::vector<unsigned int>> VectorOfVectors;
+
 
 typedef struct s_dataHolder
 {
-	VectorPair vectorOfPairs;
+	VectorOfPairs vectorOfPairs;
 	std::vector<unsigned int> left;
 } t_dataHolder;
 
+int	numberOfCmp = 0;
+
 void	printVectorPair(t_dataHolder data)
 {
-	std::cout << "left: ";
-	for (size_t i = 0; i < data.left.size(); i++)
-	{
-		std::cout << data.left[i];
-		if (i < data.left.size() - 1)
-			std::cout << " ";		
-	}
-	std::cout << std::endl;
 	std::cout << "vectorPair: ";
 	for (size_t i = 0; i < data.vectorOfPairs.size(); i++)
 	{
-		pairVec pairData = data.vectorOfPairs[i];
+		PairVec pairData = data.vectorOfPairs[i];
 		std::vector<unsigned int> vFisrt = pairData.first;
 		std::vector<unsigned int> vSecond = pairData.second;
 		
@@ -77,8 +72,7 @@ void	printVectorPair(t_dataHolder data)
 			if (j < vFisrt.size() - 1)
 				std::cout << " ";
 		}
-		std::cout << "}";
-		std::cout << ",{";
+		std::cout << ", ";
 		for (size_t j = 0; j < vSecond.size(); j++)
 		{
 			std::cout << vSecond[j];
@@ -91,14 +85,59 @@ void	printVectorPair(t_dataHolder data)
 	std::cout << std::endl;
 }
 
-void	makePair(pairVec& pair, std::vector<unsigned int> vec)
+void	printVectorOfVectors(VectorOfVectors vOfv)
+{
+	for (size_t i = 0; i < vOfv.size();i++)
+	{
+		for (size_t j = 0; j < vOfv[i].size(); j++)
+		{
+			std::cout << vOfv[i][j] ;
+			if (j < vOfv[i].size() - 1)
+				std::cout << " ";
+		}
+		if (i < vOfv.size() - 1)
+			std::cout << " , ";
+	}
+	std::cout << std::endl;
+}
+
+void	printPair(PairVec pairData)
+{
+	std::cout << "Pair data: [";
+	for (size_t i = 0; i < pairData.first.size(); i++)
+	{
+		std::cout << pairData.first[i];
+		if (i < pairData.first.size() - 1)
+			std::cout << " ";	
+	}
+	std::cout << ", ";
+	for (size_t i = 0; i < pairData.second.size(); i++)
+	{
+		std::cout << pairData.second[i];
+		if (i < pairData.second.size() - 1)
+			std::cout << " ";	
+	}
+	std::cout << "]" << std::endl;
+}
+
+void	printSimpleVector(std::vector<unsigned int> vec)
+{
+	for (size_t i = 0; i < vec.size();i++)
+	{
+		std::cout << vec[i];
+		if (i < vec.size() - 1)
+			std::cout << " ";	
+	}
+	std::cout << std::endl;
+}
+
+void	makePair(PairVec& pair, std::vector<unsigned int> vec)
 {
 	std::vector<unsigned int> first;
 	std::vector<unsigned int> second;
 
 	size_t leftSize = vec.size();
-	if (leftSize % 2 != 0)
-		leftSize--;
+	leftSize = (leftSize % 2 == 0) ? leftSize : leftSize - 1;
 	for (size_t i = 0; i < leftSize;i++)
 	{
 		if (i < leftSize / 2)
@@ -109,11 +148,11 @@ void	makePair(pairVec& pair, std::vector<unsigned int> vec)
 	pair = std::make_pair(first, second);
 }
 
-void	sortPair(pairVec& pair)
+void	sortPair(PairVec& pair)
 {
 	unsigned int tmp;
 
-	// std::cout << "first: " << pair.first[0] << " second: " << pair.second[0] << std::endl;
+	numberOfCmp++;
 	if (pair.first[0] > pair.second[0])
 	{
 		tmp = pair.first[0];
@@ -122,34 +161,195 @@ void	sortPair(pairVec& pair)
 	}
 }
 
-void	mergeInsertion(t_dataHolder& data)
+void	pairTwoSingleVector(std::vector<unsigned int>& vec, PairVec pair)
 {
+	for (size_t i = 0; i < pair.first.size(); i++)
+		vec.push_back(pair.first[i]);
+	for (size_t i = 0; i < pair.second.size(); i++)
+		vec.push_back(pair.second[i]);
+}
+
+// void	pushToRest(VectorOfVectors& rest, PairVec pair)
+void	pushToRest(std::vector<unsigned int>& rest, PairVec pair)
+{
+	// std::vector<unsigned int> newVec;
+
+	// for (size_t i = 0; i < pair.first.size(); i++)
+	// 	newVec.push_back(pair.first[i]);
+	// rest.push_back(newVec);
+	// newVec.clear();
+	// for (size_t i = 0; i < pair.second.size(); i++)
+	// 	newVec.push_back(pair.second[i]);
+	// rest.push_back(newVec);
+	// newVec.clear();
+	
+	for (size_t i = 0; i < pair.first.size(); i++)
+		rest.push_back(pair.first[i]);
+	for (size_t i = 0; i < pair.second.size(); i++)
+		rest.push_back(pair.second[i]);
+}
+
+void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, VectorOfPairs vectorOfPairs)
+{
+	// std::vector<unsigned int> second = vectorOfPairs[0].second;
+	// for (size_t i = 0; i < second.size(); i++)
+	// 	std::cout << second[i] << std::endl;
+	// exit (1);
+	// destinationVector.insert(destinationVector.end(), sourceVector.begin(), sourceVector.end());
+
+	for (size_t i = 0; i < vectorOfPairs.size(); i += 2)
+	{
+		std::vector<unsigned int> first_1 = vectorOfPairs[i].first;
+		std::vector<unsigned int> first_2 = vectorOfPairs[i + 1].first;
+		std::vector<unsigned int> second_1 = vectorOfPairs[i].second;
+		std::vector<unsigned int> second_2 = vectorOfPairs[i + 1].second;
+		std::vector<unsigned int> newVec;
+
+		if (second_1[second_1.size() - 1] < second_2[second_2.size() - 1])
+		{
+			if (i == 0)
+			{
+				newVec.insert(newVec.end(), first_1.begin(), first_1.end());
+				mainChain.push_back(newVec);
+				newVec.clear();
+			}
+			newVec.insert(newVec.end(), second_1.begin(), second_1.end());
+			mainChain.push_back(newVec);
+			newVec.clear();
+			newVec.insert(newVec.end(), second_2.begin(), second_2.end());
+			mainChain.push_back(newVec);
+			newVec.clear();
+			newVec.insert(newVec.end(), first_2.begin(), first_2.end());
+			pend.push_back(newVec);
+			newVec.clear();
+		}
+		else
+		{
+			if (i == 0)
+			{
+				newVec.insert(newVec.end(), first_2.begin(), first_2.end());
+				mainChain.push_back(newVec);
+				newVec.clear();
+			}
+			newVec.insert(newVec.end(), second_2.begin(), second_2.end());
+			mainChain.push_back(newVec);
+			newVec.clear();
+			newVec.insert(newVec.end(), second_1.begin(), second_1.end());
+			mainChain.push_back(newVec);
+			newVec.clear();
+			newVec.insert(newVec.end(), first_1.begin(), first_1.end());
+			pend.push_back(newVec);
+			newVec.clear();
+		}
+	}
+}
+
+bool	customComparator(std::vector<unsigned int> subVec, int target)
+{
+	return (subVec.back() < target);
+}
+
+void	mergeInsertion(int depth, t_dataHolder& data)
+{
+	VectorOfVectors mainChain; 
+	VectorOfVectors pend;
+	// VectorOfVectors rest;
+	std::vector<unsigned int> rest;
+
 	if (data.vectorOfPairs.size() == 0)
 	{
-		pairVec pair;
-		makePair(pair, data.left);
+		std::vector<unsigned int> first;
+		std::vector<unsigned int> second;
+		size_t leftSize = data.left.size();
+		size_t i = 0;
+
+		leftSize = (leftSize % 2 == 0) ? leftSize : leftSize - 1;
+		for (; i < leftSize; i += 2)
+		{
+			first.push_back(data.left[i]);
+			second.push_back(data.left[i + 1]);
+			data.vectorOfPairs.push_back(std::make_pair(first, second));
+			first.clear();
+			second.clear();
+		}
+		first.push_back(data.left[i]);
 		if (data.left.size() % 2 != 0)
-			data.left.erase(data.left.begin(), data.left.end() - 1);
-		else
-			data.left.erase(data.left.begin(), data.left.end());
-		data.vectorOfPairs.push_back(pair);
+			pushToRest(rest, std::make_pair(first, second));
+		data.left.erase(data.left.begin(), data.left.end());
+		for (size_t i = 0; i < data.vectorOfPairs.size(); i++)
+			sortPair(data.vectorOfPairs[i]);
 	}
-	size_t	vectorOfPairSize = data.vectorOfPairs.size();
-	for (size_t i = 0; i < vectorOfPairSize; i++)
+	else
 	{
-		pairVec pair;
-		makePair(pair, data.vectorOfPairs[i].first);
-		data.vectorOfPairs.push_back(pair);
-		makePair(pair, data.vectorOfPairs[i].second);
-		data.vectorOfPairs.push_back(pair);
+		size_t	actualSize = data.vectorOfPairs.size();
+		size_t i = 0;
+		
+		size_t vectorOfPairSize = (actualSize % 2 == 0 ? actualSize : actualSize - 1);
+		for (; i < vectorOfPairSize; i += 2)
+		{
+			std::vector<unsigned int> first;
+			std::vector<unsigned int> second;
+			pairTwoSingleVector(first, data.vectorOfPairs[i]);
+			pairTwoSingleVector(second, data.vectorOfPairs[i + 1]);
+			numberOfCmp++;
+			if (first[first.size() - 1] > second[first.size() - 1])
+				data.vectorOfPairs.push_back(std::make_pair(second, first));
+			else
+				data.vectorOfPairs.push_back(std::make_pair(first, second));
+		}
+		if (actualSize % 2 != 0)
+			pushToRest(rest, data.vectorOfPairs[i]);
+		data.vectorOfPairs.erase(data.vectorOfPairs.begin(), data.vectorOfPairs.begin() + actualSize);
 	}
-	data.vectorOfPairs.erase(data.vectorOfPairs.begin(), data.vectorOfPairs.begin() + vectorOfPairSize);
-	std::cout << "vector size = "<< data.vectorOfPairs[0].first.size() << std::endl;
-	if (data.vectorOfPairs[0].first.size() > 1)
-		mergeInsertion(data);
-	for (size_t i = 0; i < data.vectorOfPairs.size(); i++)
-		sortPair(data.vectorOfPairs[i]);
+
+	// std::cout << "########################################################\n";
+	// std::cout << "recurtion depth: " << depth << std::endl; 
+	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
+	// printVectorPair(data);
+	// std::cout << "rest: ";
+	// printSimpleVector(rest);
+	// if (depth == 1)
+	// 	return ;
+	if (data.vectorOfPairs.size() > 3)
+		mergeInsertion(depth + 1, data);
+	std::cout << "########################################################\n";
+	std::cout << "reverse recurtion depth: " << depth << std::endl;
+	std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	printVectorPair(data);
+	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs);
+
+	//print--------------
+	std::cout << "mainChain: ";
+	printVectorOfVectors(mainChain);
+	std::cout << "pend: ";
+	printVectorOfVectors(pend);
+	std::cout << "rest: ";
+	printSimpleVector(rest);
+	//inset pend to the mainChain
+	for (size_t i = 0; i < pend.size(); i++)
+	{
+		unsigned int target = pend[i].back();
+		VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
+		mainChain.insert(it, pend[i]);
+	}
+	pend.clear();
+	// inset rest to the mainChain
+	unsigned int target = rest.back();
+	VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
+	mainChain.insert(it, rest);
+	rest.clear();
+
+	//print--------------
+	std::cout << "Final mainChain: ";
+	printVectorOfVectors(mainChain);
+	std::cout << "Final pend: ";
+	printVectorOfVectors(pend);
+	std::cout << "Final rest: ";
+	printSimpleVector(rest);
+	
+	//make pairs again and fill the vector of pairs
+	
+	mainChain.clear();
 	exit (1);
 	return ;
 }
@@ -158,19 +358,20 @@ void	PmergeMe(int ac, char** args)
 {
 	std::vector<unsigned int> numbers;
 	numbers = parseArguments(ac, args);
-	std::cout << "Before: ";
-	for (size_t i = 0; i < numbers.size();i++)
-		std::cout << numbers[i] << " ";
-	std::cout << std::endl;
-	std::cout << "------------------------------------" << std::endl;
+	// std::cout << "Before: ";
+	// for (size_t i = 0; i < numbers.size();i++)
+	// 	std::cout << numbers[i] << " ";
+	// std::cout << std::endl;
+	// std::cout << "------------------------------------" << std::endl;
 	t_dataHolder dataHolder;
 	dataHolder.left = numbers;
-	mergeInsertion(dataHolder);
-	std::cout << "------------------------------------" << std::endl;
-	std::cout << "After: ";
-	for (size_t i = 0; i < numbers.size();i++)
-		std::cout << numbers[i] << " ";
-	std::cout << std::endl;
+	mergeInsertion(0, dataHolder);
+	// std::cout << "------------------------------------" << std::endl;
+	// std::cout << "After: ";
+	// for (size_t i = 0; i < numbers.size();i++)
+	// 	std::cout << numbers[i] << " ";
+	// std::cout << std::endl;
+	// std::cout << "Number of comparaison: " << numberOfCmp << std::endl;
 	return ;
 }
 
