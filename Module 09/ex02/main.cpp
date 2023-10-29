@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/29 00:22:18 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/29 16:15:05 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ std::vector<unsigned int>	parseArguments(int ac, char **args)
 
 typedef std::pair<std::vector<unsigned int>, std::vector<unsigned int> > PairVec;
 typedef std::vector<PairVec > VectorOfPairs;
-typedef std::vector<std::vector<unsigned int>> VectorOfVectors;
+typedef std::vector<std::vector<unsigned int> > VectorOfVectors;
 
 
 typedef struct s_dataHolder
@@ -169,20 +169,8 @@ void	pairTwoSingleVector(std::vector<unsigned int>& vec, PairVec pair)
 		vec.push_back(pair.second[i]);
 }
 
-// void	pushToRest(VectorOfVectors& rest, PairVec pair)
 void	pushToRest(std::vector<unsigned int>& rest, PairVec pair)
 {
-	// std::vector<unsigned int> newVec;
-
-	// for (size_t i = 0; i < pair.first.size(); i++)
-	// 	newVec.push_back(pair.first[i]);
-	// rest.push_back(newVec);
-	// newVec.clear();
-	// for (size_t i = 0; i < pair.second.size(); i++)
-	// 	newVec.push_back(pair.second[i]);
-	// rest.push_back(newVec);
-	// newVec.clear();
-	
 	for (size_t i = 0; i < pair.first.size(); i++)
 		rest.push_back(pair.first[i]);
 	for (size_t i = 0; i < pair.second.size(); i++)
@@ -191,43 +179,20 @@ void	pushToRest(std::vector<unsigned int>& rest, PairVec pair)
 
 void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, VectorOfPairs vectorOfPairs, int depth)
 {
-	// std::vector<unsigned int> second = vectorOfPairs[0].second;
-	// for (size_t i = 0; i < second.size(); i++)
-	// 	std::cout << second[i] << std::endl;
-	// exit (1);
-	// destinationVector.insert(destinationVector.end(), sourceVector.begin(), sourceVector.end());
 	size_t	originalSize = vectorOfPairs.size();
 	size_t	sizeOfVectorOfPairs = (originalSize % 2 == 0 ? originalSize : originalSize - 1);
 	size_t i = 0;
-	if (originalSize == 1 && vectorOfPairs[0].first.size() == 1)
+	if (originalSize == 1)
 	{
-		std::vector<unsigned int> vec;
-		numberOfCmp++;
-		if (vectorOfPairs[0].first[0] < vectorOfPairs[0].second[0])
-		{
-			vec.push_back(vectorOfPairs[0].first[0]);
-			vec.push_back(vectorOfPairs[0].second[0]);
-		}
-		else
-		{
-			vec.push_back(vectorOfPairs[0].second[0]);
-			vec.push_back(vectorOfPairs[0].first[0]);
-		}
+		mainChain.push_back(vectorOfPairs[0].first);
 		mainChain.push_back(vectorOfPairs[0].second);
 		return ;
 	}
-
 	for (; i < sizeOfVectorOfPairs; i += 2)
 	{
 		PairVec firstPair = vectorOfPairs[i];
       PairVec secondPair = vectorOfPairs[i + 1];
 
-		numberOfCmp++;
-		if (firstPair.second[firstPair.second.size() - 1] > secondPair.second[secondPair.second.size() - 1])
-		{
-			firstPair = vectorOfPairs[i + 1];
-			secondPair = vectorOfPairs[i];
-		}
 		if (i == 0)
 		{
 			mainChain.push_back(firstPair.first);
@@ -251,7 +216,7 @@ void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, Vec
 bool	customComparator(std::vector<unsigned int> subVec, int target)
 {
 	numberOfCmp++;
-	return (subVec.back() < target);
+	return (subVec.back() <= target);
 }
 
 void	pushBackToLeft(VectorOfVectors mainChain, std::vector<unsigned int>& left)
@@ -314,26 +279,27 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 
 	//print--------------
 	// std::cout << "########################################################\n";
+	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
 	// std::cout << "recurtion depth: " << depth << std::endl; 
-	// std::cout << "number of comparaison: " << numberOfCmp << std::endl; 
 	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	// printVectorPair(data);
 	// std::cout << "rest: ";
 	// printSimpleVector(rest);
 	// if (depth == 1)
 	// 	return ;
-	if (data.vectorOfPairs.size() > 2)
+	// if (data.vectorOfPairs.size() <= 1)
+	// 	return ;
+	if (data.vectorOfPairs.size() > 1)
 		mergeInsertion(depth + 1, data);
-	// std::cout << "befor number of comparaison: " << numberOfCmp << std::endl;
+	// if (depth == 3)
+	// 	return ;
+	// exit (1);
 	// std::cout << "########################################################\n";
 	// std::cout << "reverse recurtion depth: " << depth << std::endl;
+	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
 	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	// printVectorPair(data);
-
 	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs, depth);
-
-	// std::cout << "after filling the mainChain number of comparaison: " << numberOfCmp << std::endl;
-	// std::cout << "after number of comparaison: " << numberOfCmp << std::endl;
 
 	//print--------------
 	// std::cout << "mainChain: ";
@@ -346,22 +312,24 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	//inset pend to the mainChain
 	for (size_t i = 0; i < pend.size(); i++)
 	{
+		VectorOfVectors::iterator it;
 		unsigned int target = pend[i].back();
-		VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
-		mainChain.insert(it, pend[i]);
+		if(i == 0 && mainChain.size() > 2)
+			it = std::lower_bound(mainChain.begin(), mainChain.begin() + 2, target, customComparator);
+		else
+			it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
+		mainChain.insert(it, pend[i]);	
 	}
-	// std::cout << "lower_bound for inset [pend] to the mainChain: " << lowerBoundIter << std::endl;
 	pend.clear();
+
 	// inset rest to the mainChain
 	if (rest.size() > 0)
 	{
 		unsigned int target = rest.back();
 		VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
 		mainChain.insert(it, rest);
-		rest.clear();
 	}
-
-	// std::cout << "lower_bound for inset [rest] to the mainChain: " << lowerBoundIter << std::endl;
+	rest.clear();
 
 	//print--------------
 	// std::cout << "Final mainChain: ";
@@ -386,6 +354,8 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	if (mainChain[0].size() == 1)
 		pushBackToLeft(mainChain, data.left);
 	mainChain.clear();
+	// if (depth == 1)
+	// 	exit (1);
 	return ;
 }
 
@@ -400,6 +370,7 @@ void	PmergeMe(int ac, char** args)
 	std::cout << std::endl;
 	std::cout << "------------------------------------" << std::endl;
 	mergeInsertion(0, dataHolder);
+	// numbers = dataHolder.left;
 	std::cout << "------------------------------------" << std::endl;
 	std::cout << "After: ";
 	for (size_t i = 0; i < dataHolder.left.size();i++)
