@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/30 10:02:20 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:09:18 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,14 +185,14 @@ void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, Vec
 		PairVec firstPair = vectorOfPairs[i];
     	PairVec secondPair = vectorOfPairs[i + 1];
 
-		if (i == 0)
-		{
-			mainChain.push_back(firstPair.first);
-			mainChain.push_back(firstPair.second);
-			mainChain.push_back(secondPair.second);
-			pend.push_back(secondPair.first);
-			continue ;
-		}
+		// if (i == 0)
+		// {
+		// 	mainChain.push_back(firstPair.first);
+		// 	mainChain.push_back(firstPair.second);
+		// 	mainChain.push_back(secondPair.second);
+		// 	pend.push_back(secondPair.first);
+		// 	continue ;
+		// }
 		mainChain.push_back(firstPair.second);
 		mainChain.push_back(secondPair.second);
 		pend.push_back(firstPair.first);
@@ -215,28 +215,6 @@ void	pushBackToLeft(VectorOfVectors mainChain, std::vector<unsigned int>& left)
 {
 	for (size_t i = 0;i < mainChain.size();i++)
 		left.push_back(mainChain[i][0]);
-}
-
-unsigned int jacobsthal(unsigned int n)
-{
-	if (n == 0)
-		return (0);
-	if (n == 1)
-		return (1);
-	return (jacobsthal(n - 1) + 2 * (jacobsthal(n - 2)));
-}
-
-std::vector<unsigned int> createJacobsthalSequence(unsigned int pendSize)
-{
-	std::vector<unsigned int> sequence;
-	unsigned int index = 3;
-
-	while (jacobsthal(index) < pendSize)
-	{
-		sequence.push_back(jacobsthal(index));
-		index++;
-	}
-	return (sequence);
 }
 
 void	createPairs(t_dataHolder& data, std::vector<unsigned int>& rest)
@@ -263,6 +241,28 @@ void	createPairs(t_dataHolder& data, std::vector<unsigned int>& rest)
 		sortPair(data.vectorOfPairs[i]);
 }
 
+unsigned int jacobsthal(unsigned int n)
+{
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthal(n - 1) + 2 * (jacobsthal(n - 2)));
+}
+
+std::vector<unsigned int> createJacobsthalSequence(unsigned int pendSize)
+{
+	std::vector<unsigned int> sequence;
+	unsigned int index = 3;
+
+	while (jacobsthal(index) < pendSize)
+	{
+		sequence.push_back(jacobsthal(index));
+		index++;
+	}
+	return (sequence);
+}
+
 void	mergeInsertion(int depth, t_dataHolder& data)
 {
 	VectorOfVectors mainChain; 
@@ -281,8 +281,8 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 		{
 			std::vector<unsigned int> first;
 			std::vector<unsigned int> second;
-			pairTwoSingleVector(first, data.vectorOfPairs[i]);
-			pairTwoSingleVector(second, data.vectorOfPairs[i + 1]);
+			pairToSingleVector(first, data.vectorOfPairs[i]);
+			pairToSingleVector(second, data.vectorOfPairs[i + 1]);
 			numberOfCmp++;
 			if (first[first.size() - 1] > second[first.size() - 1])
 				data.vectorOfPairs.push_back(std::make_pair(second, first));
@@ -295,13 +295,13 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	}
 
 	//print--------------
-	// std::cout << "########################################################\n";
-	// std::cout << "recurtion depth: " << depth << std::endl; 
-	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
-	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
-	// printVectorPair(data);
-	// std::cout << "rest: ";
-	// printSimpleVector(rest);
+	std::cout << "########################################################\n";
+	std::cout << "recurtion depth: " << depth << std::endl; 
+	std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
+	std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
+	printVectorPair(data);
+	std::cout << "rest: ";
+	printSimpleVector(rest);
 	// if (depth == 1)
 	// 	return ;
 	// if (data.vectorOfPairs.size() <= 1)
@@ -311,62 +311,85 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	// if (depth == 3)
 	// 	return ;
 	// exit (1);
-	// std::cout << "########################################################\n";
-	// std::cout << "reverse recurtion depth: " << depth << std::endl;
-	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
-	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
-	// printVectorPair(data);
+	std::cout << "########################################################\n";
+	std::cout << "reverse recurtion depth: " << depth << std::endl;
+	std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
+	std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
+	printVectorPair(data);
 	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs);
 
 	//print--------------
-	// std::cout << "mainChain: ";
-	// printVectorOfVectors(mainChain);
-	// std::cout << "pend: ";
-	// printVectorOfVectors(pend);
-	// std::cout << "rest: ";
-	// printSimpleVector(rest);
+	std::cout << "mainChain: ";
+	printVectorOfVectors(mainChain);
+	std::cout << "pend: ";
+	printVectorOfVectors(pend);
+	std::cout << "rest: ";
+	printSimpleVector(rest);
 
+	//	push rest to pend
+	if (rest.size())
+		pend.push_back(rest);
+	std::cout << "pend after inserting rest: ";
+	printVectorOfVectors(pend);
 	//inset pend to the mainChain
-	size_t	added = 0;
-	size_t	endp = 0;
-
-	// for (size_t jacobIndex = 0; ; ++jacobIndex)
+	size_t	pendSize = pend.size();
+	std::vector<unsigned int> sequence = createJacobsthalSequence(pendSize + 1);
+	std::cout << "jacob numbers: ";
+	printSimpleVector(sequence);
+	size_t	pos;
+	size_t	added = 1;
+	size_t	lastEndp = 1;
+	if (pend.size())
+		mainChain.insert(mainChain.begin(), pend[0]);
+	for (size_t i = 0; i < sequence.size(); i++)
+	{
+		pos = sequence[i];
+		VectorOfVectors::iterator it;
+		unsigned int target;
+		// std::cout << "mainChain befor: ";
+		// printVectorOfVectors(mainChain);
+		while (lastEndp < pos)
+		{
+			// std::cout << "pos: " << pos << std::endl;
+			// std::cout << "added: " << added << std::endl;
+			target = pend[pos - 1].back();
+			it = std::lower_bound(mainChain.begin(), mainChain.begin() + (pos - 1) + added, target, customComparator);
+			mainChain.insert(it, pend[pos - 1]);
+			// std::cout << "mainChain: ";
+			// printVectorOfVectors(mainChain);
+			pos--;
+			added++;
+		}
+		lastEndp = sequence[i];
+	}
+	// if (depth == 2)	
+	// 	exit(1);
+	// for (size_t i = 0; i < pend.size(); i++)
 	// {
-	// 	// size_t dest = sequence[jacobIndex];
-	// 	// if (dest >= pendSize)
-   //    //   break;
-	// 	// unsigned int target = pend[];
-
 	// 	VectorOfVectors::iterator it;
-	// 	it = std::lower_bound(mainChain.begin(), mainChain.begin() + endp, target, customComparator);
-	// 	// mainChain.insert(it, pend[i]);
-	// 	added++;
+	// 	unsigned int target = pend[i].back();
+	// 	// if(i == 0 && mainChain.size() > 2)
+	// 	// 	it = std::lower_bound(mainChain.begin(), mainChain.begin() + 2, target, customComparator);
+	// 	// else
+	// 		it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
+	// 	mainChain.insert(it, pend[i]);	
+	// }
 	// }
 
-	for (size_t i = 0; i < pend.size(); i++)
-	{
-		VectorOfVectors::iterator it;
-		unsigned int target = pend[i].back();
-		if(i == 0 && mainChain.size() > 2)
-			it = std::lower_bound(mainChain.begin(), mainChain.begin() + 2, target, customComparator);
-		else
-			it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
-		mainChain.insert(it, pend[i]);	
-	}
 	pend.clear();
 
 	// inset rest to the mainChain
-	if (rest.size() > 0)
-	{
-		unsigned int target = rest.back();
-		VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
-		mainChain.insert(it, rest);
-	}
-	rest.clear();
+	// if (rest.size() > 0)
+	// {
+	// 	unsigned int target = rest.back();
+	// 	VectorOfVectors::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), target, customComparator);
+	// 	mainChain.insert(it, rest);
+	// }
+	// rest.clear();
 
 	//print--------------
-	// std::cout << "Final mainChain: ";
-	// printVectorOfVectors(mainChain);
+	std::cout << "Final mainChain: ";
+	printVectorOfVectors(mainChain);
 	// std::cout << "Final pend: ";
 	// printVectorOfVectors(pend);
 	// std::cout << "Final rest: ";
