@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/29 19:44:49 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:02:20 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void	sortPair(PairVec& pair)
 	}
 }
 
-void	pairTwoSingleVector(std::vector<unsigned int>& vec, PairVec pair)
+void	pairToSingleVector(std::vector<unsigned int>& vec, PairVec pair)
 {
 	for (size_t i = 0; i < pair.first.size(); i++)
 		vec.push_back(pair.first[i]);
@@ -169,15 +169,7 @@ void	pairTwoSingleVector(std::vector<unsigned int>& vec, PairVec pair)
 		vec.push_back(pair.second[i]);
 }
 
-void	pushToRest(std::vector<unsigned int>& rest, PairVec pair)
-{
-	for (size_t i = 0; i < pair.first.size(); i++)
-		rest.push_back(pair.first[i]);
-	for (size_t i = 0; i < pair.second.size(); i++)
-		rest.push_back(pair.second[i]);
-}
-
-void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, VectorOfPairs vectorOfPairs, int depth)
+void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, VectorOfPairs vectorOfPairs)
 {
 	size_t	originalSize = vectorOfPairs.size();
 	size_t	sizeOfVectorOfPairs = (originalSize % 2 == 0 ? originalSize : originalSize - 1);
@@ -191,7 +183,7 @@ void	fillMainAndPendChain(VectorOfVectors& mainChain, VectorOfVectors& pend, Vec
 	for (; i < sizeOfVectorOfPairs; i += 2)
 	{
 		PairVec firstPair = vectorOfPairs[i];
-      PairVec secondPair = vectorOfPairs[i + 1];
+    	PairVec secondPair = vectorOfPairs[i + 1];
 
 		if (i == 0)
 		{
@@ -234,11 +226,9 @@ unsigned int jacobsthal(unsigned int n)
 	return (jacobsthal(n - 1) + 2 * (jacobsthal(n - 2)));
 }
 
-// std::vector<unsigned int> createJacobsthalSequence(unsigned int pendSize)
-#include <deque>
-std::deque<unsigned int> createJacobsthalSequence(unsigned int pendSize)
+std::vector<unsigned int> createJacobsthalSequence(unsigned int pendSize)
 {
-	std::deque<unsigned int> sequence;
+	std::vector<unsigned int> sequence;
 	unsigned int index = 3;
 
 	while (jacobsthal(index) < pendSize)
@@ -249,99 +239,41 @@ std::deque<unsigned int> createJacobsthalSequence(unsigned int pendSize)
 	return (sequence);
 }
 
+void	createPairs(t_dataHolder& data, std::vector<unsigned int>& rest)
+{
+	std::vector<unsigned int> first;
+	std::vector<unsigned int> second;
+	size_t leftSize = data.left.size();
+	size_t i = 0;
 
-// std::vector<unsigned int>	generatePositionForInsertion(VectorOfVectors pend)
-// {
-// 	size_t val;
-// 	size_t pos;
-// 	size_t lastPos;
-
-// 	std::vector<unsigned int> positions;
-// 	if (pend.empty())
-// 		return (positions);
-// 	size_t	pendSize = pend.size();
-// 	std::deque<unsigned int> sequence = createJacobsthalSequence(pendSize);
-
-// 	lastPos = 1;
-// 	val = 1;
-// 	while (!sequence.empty())
-// 	{
-// 		val = sequence.front();
-
-// 		sequence.pop_front();
-// 		positions.push_back(val);
-
-// 		pos = val - 1;
-// 		while (pos > lastPos)
-// 		{
-// 			positions.push_back(pos);
-// 			pos--;
-// 		}
-// 		lastPos = val;
-// 	}
-// 	while (val++ < pend.size())
-// 		positions.push_back(val);
-// 	return (positions);
-// }
-
-// std::vector<unsigned int>	generatePositionForInsertion(VectorOfVectors pend)
-// {
-// 	size_t	pendSize = pend.size();
-// 	std::vector<unsigned int> sequence = createJacobsthalSequence(pendSize);
-// 	std::cout << "JacobsthalSequence: ";
-// 	printSimpleVector(sequence);
-// 	std::cout << "JacobsthalSequence size: " << sequence.size() << std::endl;
-// 	std::cout << "pend size: " << pendSize << std::endl;
-// 	std::vector<unsigned int> positions;
-// 	size_t	pos = 0;
-// 	size_t	lastPos = 0;
-// 	size_t	jacobValue;
-// 	for (size_t i = 0;i < sequence.size();i++)
-// 	{
-// 		jacobValue = sequence[i];
-// 		positions.push_back(jacobValue);
-// 		pos = ;
-// 		for ()
-// 		lastPos = 
-// 	}
-// 	// for (size_t i = 0;i < pendSize;i++)
-		
-// 	return (positions);
-// }
-
+	leftSize = (leftSize % 2 == 0) ? leftSize : leftSize - 1;
+	for (; i < leftSize; i += 2)
+	{
+		first.push_back(data.left[i]);
+		second.push_back(data.left[i + 1]);
+		data.vectorOfPairs.push_back(std::make_pair(first, second));
+		first.clear();
+		second.clear();
+	}
+	first.push_back(data.left[i]);
+	if (data.left.size() % 2 != 0)
+		pairToSingleVector(rest, std::make_pair(first, second));
+	data.left.erase(data.left.begin(), data.left.end());
+	for (size_t i = 0; i < data.vectorOfPairs.size(); i++)
+		sortPair(data.vectorOfPairs[i]);
+}
 
 void	mergeInsertion(int depth, t_dataHolder& data)
 {
 	VectorOfVectors mainChain; 
 	VectorOfVectors pend;
 	std::vector<unsigned int> rest;
+	size_t	actualSize = data.vectorOfPairs.size();
 
-	if (data.vectorOfPairs.size() == 0)
-	{
-		std::vector<unsigned int> first;
-		std::vector<unsigned int> second;
-		size_t leftSize = data.left.size();
-		size_t i = 0;
-
-		leftSize = (leftSize % 2 == 0) ? leftSize : leftSize - 1;
-		for (; i < leftSize; i += 2)
-		{
-			first.push_back(data.left[i]);
-			second.push_back(data.left[i + 1]);
-			data.vectorOfPairs.push_back(std::make_pair(first, second));
-			first.clear();
-			second.clear();
-		}
-		first.push_back(data.left[i]);
-		if (data.left.size() % 2 != 0)
-			pushToRest(rest, std::make_pair(first, second));
-		data.left.erase(data.left.begin(), data.left.end());
-		for (size_t i = 0; i < data.vectorOfPairs.size(); i++)
-			sortPair(data.vectorOfPairs[i]);
-	}
+	if (actualSize == 0)
+		createPairs(data, rest);
 	else
 	{
-		size_t	actualSize = data.vectorOfPairs.size();
 		size_t i = 0;
 		
 		size_t vectorOfPairSize = (actualSize % 2 == 0 ? actualSize : actualSize - 1);
@@ -358,14 +290,14 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 				data.vectorOfPairs.push_back(std::make_pair(first, second));
 		}
 		if (actualSize % 2 != 0)
-			pushToRest(rest, data.vectorOfPairs[i]);
+			pairToSingleVector(rest, data.vectorOfPairs[i]);
 		data.vectorOfPairs.erase(data.vectorOfPairs.begin(), data.vectorOfPairs.begin() + actualSize);
 	}
 
 	//print--------------
 	// std::cout << "########################################################\n";
-	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
 	// std::cout << "recurtion depth: " << depth << std::endl; 
+	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
 	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	// printVectorPair(data);
 	// std::cout << "rest: ";
@@ -379,27 +311,25 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	// if (depth == 3)
 	// 	return ;
 	// exit (1);
-	std::cout << "########################################################\n";
-	std::cout << "reverse recurtion depth: " << depth << std::endl;
-	std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
-	std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
+	// std::cout << "########################################################\n";
+	// std::cout << "reverse recurtion depth: " << depth << std::endl;
+	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
+	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	// printVectorPair(data);
-	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs, depth);
+	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs);
 
 	//print--------------
-	std::cout << "mainChain: ";
-	printVectorOfVectors(mainChain);
-	std::cout << "pend: ";
-	printVectorOfVectors(pend);
-	std::cout << "rest: ";
-	printSimpleVector(rest);
+	// std::cout << "mainChain: ";
+	// printVectorOfVectors(mainChain);
+	// std::cout << "pend: ";
+	// printVectorOfVectors(pend);
+	// std::cout << "rest: ";
+	// printSimpleVector(rest);
 
 	//inset pend to the mainChain
 	size_t	added = 0;
 	size_t	endp = 0;
-	// std::vector<unsigned int> poss = generatePositionForInsertion(pend);
-	std::cout << "positions: ";
-	printSimpleVector(poss);
+
 	// for (size_t jacobIndex = 0; ; ++jacobIndex)
 	// {
 	// 	// size_t dest = sequence[jacobIndex];
@@ -471,10 +401,10 @@ void	PmergeMe(int ac, char** args)
 	for (size_t i = 0; i < dataHolder.left.size();i++)
 		std::cout << dataHolder.left[i] << " ";
 	std::cout << std::endl;
-	std::cout << "------------------------------------" << std::endl;
+	std::cout << "========================================================" << std::endl;
 	mergeInsertion(0, dataHolder);
 	// numbers = dataHolder.left;
-	std::cout << "------------------------------------" << std::endl;
+	std::cout << "========================================================" << std::endl;
 	std::cout << "After: ";
 	for (size_t i = 0; i < dataHolder.left.size();i++)
 		std::cout << dataHolder.left[i] << " ";
