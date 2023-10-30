@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:25 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/29 16:15:05 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:44:49 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,91 @@ void	pushBackToLeft(VectorOfVectors mainChain, std::vector<unsigned int>& left)
 		left.push_back(mainChain[i][0]);
 }
 
+unsigned int jacobsthal(unsigned int n)
+{
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthal(n - 1) + 2 * (jacobsthal(n - 2)));
+}
+
+// std::vector<unsigned int> createJacobsthalSequence(unsigned int pendSize)
+#include <deque>
+std::deque<unsigned int> createJacobsthalSequence(unsigned int pendSize)
+{
+	std::deque<unsigned int> sequence;
+	unsigned int index = 3;
+
+	while (jacobsthal(index) < pendSize)
+	{
+		sequence.push_back(jacobsthal(index));
+		index++;
+	}
+	return (sequence);
+}
+
+
+// std::vector<unsigned int>	generatePositionForInsertion(VectorOfVectors pend)
+// {
+// 	size_t val;
+// 	size_t pos;
+// 	size_t lastPos;
+
+// 	std::vector<unsigned int> positions;
+// 	if (pend.empty())
+// 		return (positions);
+// 	size_t	pendSize = pend.size();
+// 	std::deque<unsigned int> sequence = createJacobsthalSequence(pendSize);
+
+// 	lastPos = 1;
+// 	val = 1;
+// 	while (!sequence.empty())
+// 	{
+// 		val = sequence.front();
+
+// 		sequence.pop_front();
+// 		positions.push_back(val);
+
+// 		pos = val - 1;
+// 		while (pos > lastPos)
+// 		{
+// 			positions.push_back(pos);
+// 			pos--;
+// 		}
+// 		lastPos = val;
+// 	}
+// 	while (val++ < pend.size())
+// 		positions.push_back(val);
+// 	return (positions);
+// }
+
+// std::vector<unsigned int>	generatePositionForInsertion(VectorOfVectors pend)
+// {
+// 	size_t	pendSize = pend.size();
+// 	std::vector<unsigned int> sequence = createJacobsthalSequence(pendSize);
+// 	std::cout << "JacobsthalSequence: ";
+// 	printSimpleVector(sequence);
+// 	std::cout << "JacobsthalSequence size: " << sequence.size() << std::endl;
+// 	std::cout << "pend size: " << pendSize << std::endl;
+// 	std::vector<unsigned int> positions;
+// 	size_t	pos = 0;
+// 	size_t	lastPos = 0;
+// 	size_t	jacobValue;
+// 	for (size_t i = 0;i < sequence.size();i++)
+// 	{
+// 		jacobValue = sequence[i];
+// 		positions.push_back(jacobValue);
+// 		pos = ;
+// 		for ()
+// 		lastPos = 
+// 	}
+// 	// for (size_t i = 0;i < pendSize;i++)
+		
+// 	return (positions);
+// }
+
+
 void	mergeInsertion(int depth, t_dataHolder& data)
 {
 	VectorOfVectors mainChain; 
@@ -294,22 +379,40 @@ void	mergeInsertion(int depth, t_dataHolder& data)
 	// if (depth == 3)
 	// 	return ;
 	// exit (1);
-	// std::cout << "########################################################\n";
-	// std::cout << "reverse recurtion depth: " << depth << std::endl;
-	// std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
-	// std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
+	std::cout << "########################################################\n";
+	std::cout << "reverse recurtion depth: " << depth << std::endl;
+	std::cout << "number of comparaisons: " << numberOfCmp << std::endl; 
+	std::cout << "vectorOfPairs size: " << data.vectorOfPairs.size() << std::endl;
 	// printVectorPair(data);
 	fillMainAndPendChain(mainChain, pend, data.vectorOfPairs, depth);
 
 	//print--------------
-	// std::cout << "mainChain: ";
-	// printVectorOfVectors(mainChain);
-	// std::cout << "pend: ";
-	// printVectorOfVectors(pend);
-	// std::cout << "rest: ";
-	// printSimpleVector(rest);
+	std::cout << "mainChain: ";
+	printVectorOfVectors(mainChain);
+	std::cout << "pend: ";
+	printVectorOfVectors(pend);
+	std::cout << "rest: ";
+	printSimpleVector(rest);
 
 	//inset pend to the mainChain
+	size_t	added = 0;
+	size_t	endp = 0;
+	// std::vector<unsigned int> poss = generatePositionForInsertion(pend);
+	std::cout << "positions: ";
+	printSimpleVector(poss);
+	// for (size_t jacobIndex = 0; ; ++jacobIndex)
+	// {
+	// 	// size_t dest = sequence[jacobIndex];
+	// 	// if (dest >= pendSize)
+   //    //   break;
+	// 	// unsigned int target = pend[];
+
+	// 	VectorOfVectors::iterator it;
+	// 	it = std::lower_bound(mainChain.begin(), mainChain.begin() + endp, target, customComparator);
+	// 	// mainChain.insert(it, pend[i]);
+	// 	added++;
+	// }
+
 	for (size_t i = 0; i < pend.size(); i++)
 	{
 		VectorOfVectors::iterator it;
@@ -397,3 +500,5 @@ int main(int ac, char **av)
 		std::cout << "Usage: \n\t./PmergeMe <nbr1> <nbr2> <nbr3> ..." << std::endl;
 	return (0);
 }
+
+// 7 10 11 4 9 10 12 4 18 11 9 2 18 16 9 18
