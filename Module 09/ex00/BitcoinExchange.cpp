@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:48:29 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/26 12:39:22 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:08:05 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,24 @@ static int	getValidDate(std::string date, std::string line)
 	return (dateValue);
 }
 
+static std::string trim(std::string str)
+{
+	size_t	start = 0;
+	size_t	end = str.length() - 1;
+	while (start < str.size() && (str[start] == ' ' || str[start] == '\t'))
+		start++;
+	while (end > 0 && (str[end] == ' ' || str[end] == '\t'))
+		end--;
+	return (str.substr(start, end - start + 1));
+}
+
 static float	getValidValue(std::string value, std::string line, bool maxValue)
 {
 	float dvalue;
 	char* endptr;
 
+	if (trim(value).empty())
+		return (std::cout << "Error: bad input =>" << line << std::endl, -1);
 	dvalue = std::strtod(value.c_str(), &endptr);
 	if (*endptr != '\0' && !hasSpacesOnly(endptr))
 		return (std::cout << "Error: bad input =>" << line << std::endl, -1);
@@ -87,22 +100,11 @@ static std::pair<int, float> fillDataBaseMap(std::string line)
 {
 	std::pair<int, float> pair;
 
-	pair.first = getValidDate(line.substr(0, line.find(",")), line);
+	pair.first = getValidDate(trim(line.substr(0, line.find(","))), line);
 	if (pair.first == -1)
 		return (pair);
 	pair.second = getValidValue(line.substr(line.find(",") + 1, line.length()), line, false);
 	return (pair);
-}
-
-static std::string trim(std::string str)
-{
-	size_t	start = 0;
-	size_t	end = str.length() - 1;
-	while (start < str.size() && (str[start] == ' ' || str[start] == '\t'))
-		start++;
-	while (end > 0 && (str[end] == ' ' || str[end] == '\t'))
-		end--;
-	return (str.substr(start, end - start + 1));
 }
 
 void	getBitcoinOnThatDate(std::map<int, float> dataBase, std::pair<int, float> toFinde, std::string line)
@@ -130,8 +132,8 @@ void	getBitcoinOnThatDate(std::map<int, float> dataBase, std::pair<int, float> t
 			return ;
 		}
 	}
-	std::cout << line.substr(0, line.find("|")) << " => " 
-				 << line.substr(line.find("|") + 1, line.length())
+	std::cout << trim(line.substr(0, line.find("|"))) << " => " 
+				 << trim(line.substr(line.find("|") + 1, line.length()))
 				 << " = " << value << std::endl;
 }
 
@@ -182,7 +184,9 @@ int	bitcoinExchange(std::string fileName)
 			checkHeader = true;
 			continue ;
 		}
-		pair.first = getValidDate(line.substr(0, line.find("|")), line);
+		if (line.empty())
+			continue ;
+		pair.first = getValidDate(trim(line.substr(0, line.find("|"))), line);
 		if (pair.first == -1)
 				continue ;
 		pair.second = getValidValue(line.substr(line.find("|") + 1, line.length()), line, true);
