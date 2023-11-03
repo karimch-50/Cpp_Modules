@@ -6,7 +6,7 @@
 #    By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 16:06:28 by kchaouki          #+#    #+#              #
-#    Updated: 2023/10/28 21:32:14 by kchaouki         ###   ########.fr        #
+#    Updated: 2023/10/31 12:49:43 by kchaouki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = main.cpp PmergeMe.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-FLAGS = #-fsanitize=address #-Wall -Wextra -Werror -std=c++98 
+FLAGS = -std=c++98  #-fsanitize=address #-Wall -Wextra -Werror 
 
 CCe = c++
 

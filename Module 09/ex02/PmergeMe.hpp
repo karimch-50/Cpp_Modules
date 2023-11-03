@@ -6,7 +6,7 @@
 /*   By: kchaouki < kchaouki@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:33 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/28 18:05:13 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:12:34 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <vector>
+#include <list>
 
 
 
