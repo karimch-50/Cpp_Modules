@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:30 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/11/11 21:27:50 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/11/11 21:35:24 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -441,7 +441,7 @@ PmergeMe::PmergeMe(Vector number)
 
 	timeReqForList = clock();
 	mergeInsertionUsingList();
-	timeReqForVec = clock() - timeReqForList;
+	timeReqForList = clock() - timeReqForList;
 	std::cout << "After: ";
 	printSimpleVector(storedNumbersVec);
 
