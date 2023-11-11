@@ -1,0 +1,77 @@
+Before: 3 2 14 4 39 35 29 8 26 20 36 26 35 48 50 49 42 26 38 10 24 
+========================================================
+########################################################
+recurtion depth: 0
+number of comparaisons: 10
+vectorOfPairs size: 10
+vectorPair: {2, 3}{4, 14}{35, 39}{8, 29}{20, 26}{26, 36}{35, 48}{49, 50}{26, 42}{10, 38}
+rest: 24
+########################################################
+recurtion depth: 1
+number of comparaisons: 15
+vectorOfPairs size: 5
+vectorPair: {2 3, 4 14}{8 29, 35 39}{20 26, 26 36}{35 48, 49 50}{10 38, 26 42}
+rest: 
+########################################################
+recurtion depth: 2
+number of comparaisons: 17
+vectorOfPairs size: 2
+vectorPair: {2 3 4 14, 8 29 35 39}{20 26 26 36, 35 48 49 50}
+rest: 10 38 26 42
+########################################################
+recurtion depth: 3
+number of comparaisons: 18
+vectorOfPairs size: 1
+vectorPair: {2 3 4 14 8 29 35 39, 20 26 26 36 35 48 49 50}
+rest: 
+########################################################
+reverse recurtion depth: 3
+number of comparaisons: 18
+vectorOfPairs size: 1
+vectorPair: {2 3 4 14 8 29 35 39, 20 26 26 36 35 48 49 50}
+mainChain: 2 3 4 14 8 29 35 39 , 20 26 26 36 35 48 49 50
+pend: 
+rest: 
+Final mainChain: 2 3 4 14 8 29 35 39 , 20 26 26 36 35 48 49 50
+Final pend: 
+Final rest: 
+vectorPair: {2 3 4 14 8 29 35 39, 20 26 26 36 35 48 49 50}
+########################################################
+reverse recurtion depth: 2
+number of comparaisons: 18
+vectorOfPairs size: 2
+vectorPair: {2 3 4 14, 8 29 35 39}{20 26 26 36, 35 48 49 50}
+mainChain: 8 29 35 39 , 35 48 49 50
+pend: 2 3 4 14 , 20 26 26 36
+rest: 10 38 26 42
+Final mainChain: 2 3 4 14 , 8 29 35 39 , 10 38 26 42 , 35 48 49 50
+Final pend: 
+Final rest: 10 38 26 42
+vectorPair: {2 3 4 14, 8 29 35 39}{20 26 26 36, 35 48 49 50}
+########################################################
+reverse recurtion depth: 1
+number of comparaisons: 20
+vectorOfPairs size: 4
+vectorPair: {2 3, 4 14}{8 29, 35 39}{10 38, 26 42}{35 48, 49 50}
+mainChain: 4 14 , 35 39 , 26 42 , 49 50
+pend: 2 3 , 8 29 , 10 38 , 35 48
+rest: 
+Final mainChain: 2 3 , 4 14 , 8 29 , 10 38 , 35 39 , 26 42 , 49 50
+Final pend: 
+Final rest: 
+vectorPair: {2 3, 4 14}{8 29, 35 39}{10 38, 26 42}{35 48, 49 50}
+########################################################
+reverse recurtion depth: 0
+number of comparaisons: 24
+vectorOfPairs size: 7
+vectorPair: {2, 3}{4, 14}{8, 29}{10, 38}{35, 39}{26, 42}{49, 50}
+mainChain: 3 , 14 , 29 , 38 , 39 , 42 , 50
+pend: 2 , 4 , 8 , 10 , 35 , 26 , 49
+rest: 24
+Final mainChain: 2 , 3 , 4 , 8 , 10 , 14 , 24 , 29 , 35 , 38 , 39 , 42 , 50
+Final pend: 
+Final rest: 24
+vectorPair: {2, 3}{4, 14}{8, 29}{10, 38}{35, 39}{26, 42}{49, 50}
+========================================================
+After: 2 3 4 8 10 14 24 29 35 38 39 42 50 
+Number of comparaison for vector: 37
