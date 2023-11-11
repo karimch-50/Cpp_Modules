@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:33 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/11/11 21:07:58 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:07:07 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ class PmergeMe
 		void	mergeInsertionUsingList();
 
 		PmergeMe();
+		PmergeMe(const PmergeMe& _copy);
+		const PmergeMe& operator=(const PmergeMe& _assingnment);
 	public:
 		PmergeMe(Vector number);
 		~PmergeMe();

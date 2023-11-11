@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:30 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/11/11 21:35:24 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:08:53 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
+PmergeMe::PmergeMe(const PmergeMe& _copy){(void) _copy;}
+const PmergeMe& PmergeMe::operator=(const PmergeMe& _assingnment)
+{
+	(void)_assingnment;
+	return (*this);
+}
 
 /*========================>MERGE INSERTION USING VECTOR<========================*/
 int	PmergeMe::numberOfCmpVec = 0;
