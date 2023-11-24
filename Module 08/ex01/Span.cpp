@@ -6,7 +6,7 @@
 /*   By: kchaouki <kchaouki@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 16:57:32 by kchaouki          #+#    #+#             */
-/*   Updated: 2023/10/24 08:18:32 by kchaouki         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:51:49 by kchaouki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Span::Span()
 
 Span::~Span()
 {
+	dataHolder.clear();
 	std::cout << "Span Destructor called" << std::endl;
 }
 
