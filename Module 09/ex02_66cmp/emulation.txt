@@ -1,0 +1,73 @@
+Before: 20 18 17 15 21 19 3 2 16 9 4 14 7 12 13 10 5 11 1 8 6 
+========================================================
+########################################################
+recurtion depth: 0
+number of comparaisons: 10
+vectorOfPairs size: 10
+vectorPair: {18, 20}{15, 17}{19, 21}{2, 3}{9, 16}{4, 14}{7, 12}{10, 13}{5, 11}{1, 8}
+rest: 6
+########################################################
+recurtion depth: 1
+number of comparaisons: 15
+vectorOfPairs size: 5
+vectorPair: {15 17, 18 20}{2 3, 19 21}{4 14, 9 16}{7 12, 10 13}{1 8, 5 11}
+rest: 
+########################################################
+recurtion depth: 2
+number of comparaisons: 17
+vectorOfPairs size: 2
+vectorPair: {15 17 18 20, 2 3 19 21}{7 12 10 13, 4 14 9 16}
+rest: 1 8 5 11
+########################################################
+recurtion depth: 3
+number of comparaisons: 18
+vectorOfPairs size: 1
+vectorPair: {7 12 10 13 4 14 9 16, 15 17 18 20 2 3 19 21}
+rest: 
+########################################################
+reverse recurtion depth: 3
+number of comparaisons: 18
+vectorOfPairs size: 1
+vectorPair: {7 12 10 13 4 14 9 16, 15 17 18 20 2 3 19 21}
+mainChain: 7 12 10 13 4 14 9 16 , 15 17 18 20 2 3 19 21
+pend: 
+rest: 
+pend after inserting rest: 
+jacob numbers: 
+Final mainChain: 7 12 10 13 4 14 9 16 , 15 17 18 20 2 3 19 21
+########################################################
+reverse recurtion depth: 2
+number of comparaisons: 18
+vectorOfPairs size: 2
+vectorPair: {7 12 10 13, 4 14 9 16}{15 17 18 20, 2 3 19 21}
+mainChain: 4 14 9 16 , 2 3 19 21
+pend: 7 12 10 13 , 15 17 18 20
+rest: 1 8 5 11
+pend after inserting rest: 7 12 10 13 , 15 17 18 20 , 1 8 5 11
+jacob numbers: 3
+Final mainChain: 1 8 5 11 , 7 12 10 13 , 4 14 9 16 , 15 17 18 20 , 2 3 19 21
+########################################################
+reverse recurtion depth: 1
+number of comparaisons: 22
+vectorOfPairs size: 5
+vectorPair: {1 8, 5 11}{7 12, 10 13}{4 14, 9 16}{15 17, 18 20}{2 3, 19 21}
+mainChain: 5 11 , 10 13 , 9 16 , 18 20 , 19 21
+pend: 1 8 , 7 12 , 4 14 , 15 17 , 2 3
+rest: 
+pend after inserting rest: 1 8 , 7 12 , 4 14 , 15 17 , 2 3
+jacob numbers: 3 5
+Final mainChain: 2 3 , 1 8 , 5 11 , 7 12 , 10 13 , 4 14 , 9 16 , 15 17 , 18 20 , 19 21
+########################################################
+reverse recurtion depth: 0
+number of comparaisons: 32
+vectorOfPairs size: 10
+vectorPair: {2, 3}{1, 8}{5, 11}{7, 12}{10, 13}{4, 14}{9, 16}{15, 17}{18, 20}{19, 21}
+mainChain: 3 , 8 , 11 , 12 , 13 , 14 , 16 , 17 , 20 , 21
+pend: 2 , 1 , 5 , 7 , 10 , 4 , 9 , 15 , 18 , 19
+rest: 6
+pend after inserting rest: 2 , 1 , 5 , 7 , 10 , 4 , 9 , 15 , 18 , 19 , 6
+jacob numbers: 3 5 11
+Final mainChain: 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21
+========================================================
+After: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 
+Number of comparaison: 66
